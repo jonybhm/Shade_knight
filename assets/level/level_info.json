@@ -1,0 +1,49 @@
+{
+	"levels": [
+		{
+			"level_number": 0,
+			"music": "other_1",
+			"background": "nivel0",
+			"number_max_items": 10,
+			"number_max_platform": 7,
+			"platform_width": 100,
+			"platform_height": 60,
+			"platform_type": 0,
+			"number_max_enemies": 10,
+			"enemy_type": "enemy",
+			"enemy_scale": 0.50,
+			"enemy_health": 75,
+			"enemy_timer": 200
+		},
+		{
+			"level_number": 1,
+			"music": "level_1",
+			"background": "nivel1",
+			"number_max_items": 15,
+			"number_max_platform": 5,
+			"platform_width": 100,
+			"platform_height": 60,
+			"platform_type": 1,
+			"number_max_enemies": 5,
+			"enemy_type": "mid",
+			"enemy_scale": 0.75,
+			"enemy_health": 300,
+			"enemy_timer": 350
+		},
+		{
+			"level_number": 2,
+			"music": "level_2",
+			"background": "nivel2",
+			"number_max_items": 20,
+			"number_max_platform": 1,
+			"platform_width": 100,
+			"platform_height": 60,
+			"platform_type": 2,
+			"number_max_enemies": 1,
+			"enemy_type": "final",
+			"enemy_scale": 0.75,
+			"enemy_health": 700,
+			"enemy_timer": 0
+		}
+	]
+}
