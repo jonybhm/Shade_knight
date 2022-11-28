@@ -1,6 +1,6 @@
 import pygame
 import math
-#from auxiliar import MetodoAuxiliar
+from auxiliar_2 import MetodoAuxiliar
 from constantes import *
 
 
@@ -9,7 +9,7 @@ class Spell(pygame.sprite.Sprite):
     def __init__(self,x,y,speed,type_spell,spell_dmg,movement="straight"):
         pygame.sprite.Sprite.__init__(self)
 
-        self.speed = speed #cantidad de pixeles que el personaje se va a mover
+        self.speed = speed 
         self.x = x
         self.y = y
         self.time_update = pygame.time.get_ticks()
@@ -109,30 +109,3 @@ class Spell(pygame.sprite.Sprite):
                 self.damage_sfx_2.set_volume(0.2)
                 self.damage_sfx_2.play()
                 self.kill()
-
-
-
-
-        
-class MetodoAuxiliar:
-    @staticmethod
-    def getSurfaceFromSpriteSheet(path,columnas,filas,flip=False, step = 1,scale=1):
-        lista = []
-        surface_imagen = pygame.image.load(path)
-        fotograma_ancho = int(surface_imagen.get_width()/columnas)
-        fotograma_alto = int(surface_imagen.get_height()/filas)
-        fotograma_ancho_scaled = int(fotograma_ancho*scale)
-        fotograma_alto_scaled = int(fotograma_alto*scale)
-        x = 0
-        
-        for fila in range(filas):
-            for columna in range(0,columnas,step):
-                x = columna * fotograma_ancho
-                y = fila * fotograma_alto
-                surface_fotograma = surface_imagen.subsurface(x,y,fotograma_ancho,fotograma_alto)
-                if(scale != 1):                    
-                    surface_fotograma = pygame.transform.scale(surface_fotograma,(fotograma_ancho_scaled, fotograma_alto_scaled)).convert_alpha()
-                if(flip):
-                    surface_fotograma = pygame.transform.flip(surface_fotograma,True,False)
-                lista.append(surface_fotograma)
-        return lista

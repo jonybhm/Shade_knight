@@ -32,13 +32,3 @@ def empty_groups(group_spells_player,group_spells_enemies,group_platforms,group_
     group_items.empty()
     group_enemies.empty()
 
-
-    
-
-
-    
-    
-
-
-
-
