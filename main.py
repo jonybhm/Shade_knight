@@ -24,9 +24,6 @@ form_start_level_3 = FormStartLevel(name="form_start_level_3",master_surface=mai
 form_pause = FormPause(name="form_pause",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="main_menu")
 
 
-
-
-
 while (run):
 
     event_list = pygame.event.get()
