@@ -56,9 +56,11 @@ class FormMainMenu(Form):
         ,on_click=self.click_options,on_click_param="form_options")
         self.button_exit = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+200,text="SALIR",screen=master_surface
         ,on_click=self.click_exit)
+        self.button_rankings = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+300,text="RANKINGS",screen=master_surface
+        ,on_click=self.click_rankings,on_click_param="form_rankings")
         
         self.widget_list = [self.menu_ppal_subtitle,self.menu_ppal_title,self.button_start,
-        self.button_level_select,self.button_options,self.button_exit]
+        self.button_level_select,self.button_options,self.button_exit,self.button_rankings]
            
         #ACCIONES DE BOTONES
         
@@ -73,6 +75,9 @@ class FormMainMenu(Form):
         self.set_active(parametro)
         
     def click_exit(self,parametro): 
+        self.set_active(parametro)
+
+    def click_rankings(self,parametro):
         self.set_active(parametro)
 
             
@@ -180,7 +185,7 @@ class FormLevelSelect(Form):
 class FormStartLevel(Form):
     def __init__(self,name,master_surface,x,y,active,level_num,music_name):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
-        
+        self.advance_level = False
         self.screen = master_surface
         
         self.music_update()
@@ -188,12 +193,12 @@ class FormStartLevel(Form):
         self.spell_group_player = pygame.sprite.Group()
 
         #self.level_number = level_num
-        level_info = load_json(PATH + r"\\level\\level_info.json")
+        self.level_info = load_json(PATH + r"\\level\\level_info.json")
 
-        self.level = Level(total_items=level_info[level_num]["number_max_items"],background=level_info[level_num]["background"],
-        max_platforms=level_info[level_num]["number_max_platform"],platform_type=level_info[level_num]["platform_type"],
-        platform_height=level_info[level_num]["platform_height"],platform_width=level_info[level_num]["platform_width"],
-        music=level_info[level_num]["music"])
+        self.level = Level(total_items=self.level_info[level_num]["number_max_items"],background=self.level_info[level_num]["background"],
+        max_platforms=self.level_info[level_num]["number_max_platform"],platform_type=self.level_info[level_num]["platform_type"],
+        platform_height=self.level_info[level_num]["platform_height"],platform_width=self.level_info[level_num]["platform_width"],
+        music=self.level_info[level_num]["music"])
         #background
         self.imagen_scroll = self.level.generate_background()
         #items
@@ -206,9 +211,9 @@ class FormStartLevel(Form):
         self.level.generate_platforms()
         self.platform_group = self.level.platform_group
         #enemigos
-        self.enemies = EnemyManager(total_enemies=level_info[level_num]["number_max_enemies"],
-        enemy_type=level_info[level_num]["enemy_type"],enemy_timer=level_info[level_num]["enemy_timer"],
-        enemy_health=level_info[level_num]["enemy_health"],enemy_scale=level_info[level_num]["enemy_scale"])
+        self.enemies = EnemyManager(total_enemies=self.level_info[level_num]["number_max_enemies"],
+        enemy_type=self.level_info[level_num]["enemy_type"],enemy_timer=self.level_info[level_num]["enemy_timer"],
+        enemy_health=self.level_info[level_num]["enemy_health"],enemy_scale=self.level_info[level_num]["enemy_scale"])
         self.enemies.manage_enemies_update(self.player)
         self.enemy_group = self.enemies.managed_enemy_group
         self.spell_group_enemy = self.level.spell_group_enemy    
@@ -230,8 +235,8 @@ class FormStartLevel(Form):
         self.scroll = 0 #variable scrolling
         self.tiles = math.ceil(SCREEN_WIDTH /self.imagen_scroll.get_width()) + 1 #eliminar buffering
         
-
-
+        pygame.mixer.music.stop()
+        self.level.generate_music()
         
         
     def draw(self):
@@ -336,7 +341,41 @@ class FormStartLevel(Form):
                 self.player.action_update(2)#actualiza la accion a "2" = "move"
             else:
                 self.player.action_update(0)#actualiza la accion a "0" = "idle"
-        
+
+    def level_advance(self):    
+        #avanzar de nivel
+        if(self.player.kill_count == self.enemies.total_enemies):
+            self.level_num += 1    
+            if(self.level_num < len(self.level_info)):
+                self.player = Character(char_type="player",x=200,y=200,speed=8,magic=5,health=100) #restart_player
+                self.level = empty_groups(self.spell_group_player,self.spell_group_enemy,self.platform_group,self.items_group,self.enemy_group)
+                self.advance_level = True
+
+                
+            else:
+                '''ingresar_score = True
+                name_title = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="INGRESE SU NOMBRE:",screen=main_screen,font_size=50)
+                
+                name_input = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="{0}".format(ingreso_teclado),screen=main_screen,font_size=75)
+                score_title = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="PUNTAJE:",screen=main_screen)
+                score = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="{0}".format(player.score),screen=main_screen)
+                enter_button = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+100,text="ENTER".format(player.score),screen=main_screen)
+                name_title.draw()
+                name_input.draw()
+                score_title.draw()
+                score.draw()
+                enter_button.draw()
+                
+                #ACCIONES DE BOTONES
+                if(enter_button.button_pressed()):
+                    ingresar_score = False
+                    create_table_sqlite()
+                    add_rows_sqlite(ingreso_teclado,player.score)
+                    view_rows_sqlite()'''
+                pygame.mixer.music.stop()
+                pygame.mixer.music.load(PATH + r"\\music\\main_menu.wav")
+                pygame.mixer.music.set_volume(0.3)
+                pygame.mixer.music.play(-1,0.0,7000)
         
         
         
@@ -388,3 +427,37 @@ class FormPause(Form):
         for widget in self.widget_list:    
             widget.update()
         
+
+class FormRanking(Form):
+    def __init__(self,name,master_surface,x,y,active,level_num,music_name,ranking_info_list):
+        super().__init__(name,master_surface,x,y,active,level_num,music_name)
+                   
+        self.ranking_info_list = ranking_info_list
+                   
+        #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
+        self.title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
+        self.subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="TOP RANKINGS",screen=master_surface,font_size=50)
+        for ranked_player in ranking_info_list:
+            for i in range(len(ranking_info_list)):
+                self.position_rank = TextTitle(x=SCREEN_WIDTH//2-100,y=SCREEN_HEIGHT//2+i*25,text="{0}".format(ranked_player["position"]),screen=master_surface,font_size=25)
+                self.name_rank = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+i*25,text="{0}".format(ranked_player["name"]),screen=master_surface,font_size=25)
+                self.score_rank = TextTitle(x=SCREEN_WIDTH//2+100,y=SCREEN_HEIGHT//2+i*25,text="{0}".format(ranked_player["score"]),screen=master_surface,font_size=25)
+
+        self.button_return_menu = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="VOLVER AL MENU",screen=master_surface
+        ,on_click=self.click_return_menu,on_click_param="form_main_menu")
+                          
+        self.widget_list = [self.title,self.subtitle,self.position_rank,self.name_rank,self.score_rank,self.button_return_menu]
+    
+   
+    def click_return_menu(self,parametro): 
+        self.set_active(parametro)
+
+    def draw(self):
+        super().draw()
+        for widget in self.widget_list:    
+            widget.draw()
+
+    def update(self):
+        super().draw()
+        for widget in self.widget_list:    
+            widget.update()

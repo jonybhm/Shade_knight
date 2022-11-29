@@ -14,6 +14,9 @@ pygame.display.set_caption("Shade Knigth")
 current_level = 1
 run = True
 
+ranking_info =[{"position":1,"name":"juan","score":1200},{"position":2,"name":"roberto","score":600}] #lista de prueba para form rankings
+
+
 #FORMULARIOS!!
 form_main_menu = FormMainMenu(name="form_main_menu",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
 form_options = FormOptions(name="form_options",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
@@ -22,6 +25,7 @@ form_start_level_1 = FormStartLevel(name="form_start_level_1",master_surface=mai
 form_start_level_2 = FormStartLevel(name="form_start_level_2",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="level_1")
 form_start_level_3 = FormStartLevel(name="form_start_level_3",master_surface=main_screen,x=0,y=0,active=True,level_num=2,music_name="level_2")
 form_pause = FormPause(name="form_pause",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="main_menu")
+form_rankings = FormRanking(name="form_rankings",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu",ranking_info_list=ranking_info)
 
 
 while (run):
@@ -61,6 +65,9 @@ while (run):
     elif(form_pause.active):
         form_pause.update()
         form_pause.draw()
+    elif(form_rankings.active):
+        form_rankings.update()
+        form_rankings.draw()
                     
     pygame.display.update()
 
