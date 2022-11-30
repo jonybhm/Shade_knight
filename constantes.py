@@ -1,7 +1,7 @@
 SCREEN_WIDTH = 1500
 SCREEN_HEIGHT = 800
 
-PATH = r"C:\\Users\\JONY\\Desktop\\Programación\\1 er cuatrimestre\\Programacion-I\\Proyecto_shade_knight\\assets"
+PATH = r"C:\\Users\\JONY\\Desktop\\Programación\\Proyecto_shade_knight\\assets"
 
 FPS = 60
 

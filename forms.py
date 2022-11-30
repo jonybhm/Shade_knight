@@ -49,7 +49,7 @@ class FormMainMenu(Form):
         self.menu_ppal_subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="MENU PRINCIPAL",screen=master_surface,font_size=50)
 
         self.button_start = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="COMENZAR",screen=master_surface
-        ,on_click=self.click_start,on_click_param="form_start_level_1")
+        ,on_click=self.click_start,on_click_param="form_start_level")
         self.button_level_select = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="SELECCIONAR NIVEL",screen=master_surface
         ,on_click=self.click_level_select,on_click_param="form_level_select")
         self.button_options = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+100,text="OPCIONES",screen=master_surface
@@ -148,11 +148,11 @@ class FormLevelSelect(Form):
         self.levels_subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="ELEGIR NIVEL",screen=master_surface,font_size=50)
         
         self.button_level_1 = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="NIVEL 1",screen=master_surface,
-        on_click=self.click_level_1,on_click_param="form_start_level_1")
+        on_click=self.click_level_1,on_click_param="form_start_level")
         self.button_level_2 = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="NIVEL 2",screen=master_surface,
-        on_click=self.click_level_2,on_click_param="form_start_level_2")
+        on_click=self.click_level_2,on_click_param="form_start_level")
         self.button_level_3 = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+100,text="NIVEL 3",screen=master_surface,
-        on_click=self.click_level_3,on_click_param="form_start_level_3")
+        on_click=self.click_level_3,on_click_param="form_start_level")
         self.button_back = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+200,text="VOLVER",screen=master_surface,
         on_click=self.click_back,on_click_param="form_main_menu")
 
@@ -185,6 +185,7 @@ class FormLevelSelect(Form):
 class FormStartLevel(Form):
     def __init__(self,name,master_surface,x,y,active,level_num,music_name):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
+        self.level_restart = False
         self.advance_level = False
         self.screen = master_surface
         
@@ -345,15 +346,19 @@ class FormStartLevel(Form):
     def level_advance(self):    
         #avanzar de nivel
         if(self.player.kill_count == self.enemies.total_enemies):
-            self.level_num += 1    
+            
             if(self.level_num < len(self.level_info)):
                 self.player = Character(char_type="player",x=200,y=200,speed=8,magic=5,health=100) #restart_player
-                self.level = empty_groups(self.spell_group_player,self.spell_group_enemy,self.platform_group,self.items_group,self.enemy_group)
+                self.spell_group_player.empty()
+                self.spell_group_enemy.empty()
+                self.platform_group.empty()
+                self.items_group.empty()
+                self.enemy_group.empty()
                 self.advance_level = True
 
                 
-            else:
-                '''ingresar_score = True
+            '''else:
+                ingresar_score = True
                 name_title = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="INGRESE SU NOMBRE:",screen=main_screen,font_size=50)
                 
                 name_input = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="{0}".format(ingreso_teclado),screen=main_screen,font_size=75)
@@ -371,11 +376,23 @@ class FormStartLevel(Form):
                     ingresar_score = False
                     create_table_sqlite()
                     add_rows_sqlite(ingreso_teclado,player.score)
-                    view_rows_sqlite()'''
+                    view_rows_sqlite()
                 pygame.mixer.music.stop()
                 pygame.mixer.music.load(PATH + r"\\music\\main_menu.wav")
                 pygame.mixer.music.set_volume(0.3)
-                pygame.mixer.music.play(-1,0.0,7000)
+                pygame.mixer.music.play(-1,0.0,7000)'''
+    
+    def restart_level(self):
+
+        self.player = Character(char_type="player",x=200,y=200,speed=8,magic=5,health=100) #restart_player
+        self.spell_group_player.empty()
+        self.spell_group_enemy.empty()
+        self.platform_group.empty()
+        self.items_group.empty()
+        self.enemy_group.empty()
+        self.level_restart = True
+        
+
         
         
         
@@ -384,16 +401,16 @@ class FormStartLevel(Form):
 class FormPause(Form):
     def __init__(self,name,master_surface,x,y,active,level_num,music_name):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
-                
-        current_level_number = level_num
+        self.level_restart = False
+        self.current_level_number = level_num
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
         self.menu_ppal_title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
         self.menu_ppal_subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="PAUSA",screen=master_surface,font_size=50)
 
         self.button_resume = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="VOLVER AL NIVEL",screen=master_surface
-        ,on_click=self.click_resume,on_click_param="form_start_level_{}".format(current_level_number))
+        ,on_click=self.click_resume,on_click_param="form_start_level_{0}".format(self.current_level_number))
         self.button_restart = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="REINICIAR NIVEL",screen=master_surface
-        ,on_click=self.click_restart,on_click_param="form_start_level_{}".format(current_level_number))
+        ,on_click=self.click_restart,on_click_param="form_start_level")
         self.button_music = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+100,text="MUSICA: ON/OFF",screen=master_surface
         ,on_click=self.click_music)
         self.button_return_menu = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+200,text="VOLVER AL MENU",screen=master_surface
@@ -410,7 +427,8 @@ class FormPause(Form):
         
     def click_restart(self,parametro): 
         self.set_active(parametro)
-        
+        self.level_restart = True
+                
 
     def click_music(self,parametro):
         pygame.mixer.music.pause()
@@ -461,3 +479,4 @@ class FormRanking(Form):
         super().draw()
         for widget in self.widget_list:    
             widget.update()
+
