@@ -197,7 +197,7 @@ class FormStartLevel(Form):
         self.advance_level = False
         self.game_ending = False
         self.screen = master_surface
-        
+              
         self.music_update()
         self.player = Character(char_type="player",x=200,y=200,speed=8,magic=5,health=100)
         self.spell_group_player = pygame.sprite.Group()
@@ -471,19 +471,24 @@ class FormEnterName(Form):
 class FormRanking(Form):
     def __init__(self,name,master_surface,x,y,active,level_num,music_name,ranking_list):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
-                   
-                          
+        self.ranking_on_screen = []
+        self.ranking_list=ranking_list
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
         self.title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
         self.subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="TOP RANKINGS",screen=master_surface,font_size=50)
-        
-        self.name_rank = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="{0}".format(ranking_list),screen=master_surface,font_size=25)
-        
-
         self.button_return_menu = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="VOLVER AL MENU",screen=master_surface
         ,on_click=self.click_return_menu,on_click_param="form_main_menu")
+                
+               
+        for i in range(len(ranking_list)):
+            self.ranking_on_screen.append(TextTitle(x=SCREEN_WIDTH//2-100,y=SCREEN_HEIGHT//2+i*25,text="{0}".format(i+1),screen=master_surface,font_size=25))
+            self.ranking_on_screen.append(TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+i*25,text="{0}".format(ranking_list[i][1:]),screen=master_surface,font_size=25))
+            
+        
+        
+
                           
-        self.widget_list = [self.title,self.subtitle,self.name_rank,self.button_return_menu]
+        self.widget_list = [self.title,self.subtitle,self.button_return_menu]
     
    
     def click_return_menu(self,parametro): 
@@ -493,6 +498,9 @@ class FormRanking(Form):
         super().draw()
         for widget in self.widget_list:    
             widget.draw()
+        for ranking in self.ranking_on_screen:    
+            ranking.draw()
+            
 
     def update(self):
         super().draw()

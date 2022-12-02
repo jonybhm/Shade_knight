@@ -29,7 +29,11 @@ def add_rows_sqlite(nombre,puntaje):
 #recuperar filas
 def view_rows_sqlite():
     with sqlite3.connect("rankings_game.db") as conexion:
-        cursor=conexion.execute("SELECT * FROM rankings")
+        cursor=conexion.execute('''SELECT id, nombre, puntaje
+                                FROM rankings
+                                ORDER BY puntaje DESC
+                                LIMIT 5
+                                ''')
         lista = []
         for fila in cursor:
             print(fila)
