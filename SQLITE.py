@@ -2,25 +2,25 @@ import sqlite3
 
 #crear tabla SQLITE
 def create_table_sqlite():
-    with sqlite3.connect("CLASE_sqlite/bd_btf.db") as conexion:
+    with sqlite3.connect("rankings_game.db") as conexion:
         try:
-            sentencia = ''' create  table puntajes
+            conexion.execute(''' create  table rankings
                             (
                                     id integer primary key autoincrement,
                                     nombre text,
-                                    puntaje real
+                                    puntaje integer
                             )
-                        '''
-            conexion.execute(sentencia)
-            print("Se creo la tabla puntajes")                       
+                        ''')
+            print("Se creo la tabla rankings")                       
         except sqlite3.OperationalError:
-            print("La tabla puntajes ya existe")
+            print("La tabla rankings ya existe")
 
 #insertar filas
 def add_rows_sqlite(nombre,puntaje):
-    with sqlite3.connect("CLASE_sqlite/bd_btf.db") as conexion:
+    with sqlite3.connect("rankings_game.db") as conexion:
         try:
-            conexion.execute("insert into puntajes(nombre,puntaje) values (?,?)", ("{0}".format(nombre),"{0}".format(puntaje)))
+            conexion.execute("insert into rankings(nombre,puntaje) values (?,?)",
+            (nombre,puntaje))
             conexion.commit()# Actualiza los datos realmente en la tabla
         except:
             print("Error")
@@ -28,10 +28,14 @@ def add_rows_sqlite(nombre,puntaje):
 
 #recuperar filas
 def view_rows_sqlite():
-    with sqlite3.connect("CLASE_sqlite/bd_btf.db") as conexion:
-        cursor=conexion.execute("SELECT * FROM puntajes")
+    with sqlite3.connect("rankings_game.db") as conexion:
+        cursor=conexion.execute("SELECT * FROM rankings")
+        lista = []
         for fila in cursor:
             print(fila)
+            lista.append(fila)
+        return lista
+        
 
 
 

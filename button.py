@@ -35,7 +35,7 @@ class Button(Widget):
         
         #posicion del mouse
         pos = pygame.mouse.get_pos()
-
+        
         #colision mouse/boton
         if (self.rect.collidepoint(pos)):
             if (pygame.mouse.get_pressed()[0] == 1):
@@ -70,46 +70,51 @@ class TextTitle(Widget):
     
 
 class TextBox(Widget):
-    def __init__ (self,x,y,text,screen,font_size=50):
+    def __init__ (self,x,y,text,screen,on_click=None,on_click_param=None,font_size=25):
         super().__init__(x,y,text,screen,font_size)
-        
-        self.image = pygame.image.load(PATH + r"\\menu\\text_box.png").convert_alpha()
-        self.image = pygame.transform.scale(self.image,(500,100))
+        self.font = pygame.font.Font(PATH + r"\\font\\alagard.ttf",self.font_size)
+        self.image = self.font.render(self.text,True,(255,255,255))
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)
-
-    def draw(self):
-        super().draw()
-        #mostrar texto en pantalla
-
-    '''def button_pressed(self):
-        action = False
+        self.click_option_sfx = pygame.mixer.Sound(PATH +r"\\sfx\\menu_select.wav")
+        self.on_click = on_click
+        self.on_click_param = on_click_param
+        self.write_on = False
+        #self.state = M_STATE_NORMAL
+        self._wrting = ""
+        self.image_wrting = self.font.render(self._wrting,True,(255,255,255))
+        self.rect_wrting = self.image_wrting.get_rect()
+        self.rect_wrting.center = (x,y)
+        
+        
+        
+    def box_pressed(self):
+        
         #posicion del mouse
         pos = pygame.mouse.get_pos()
-
+        event_list = pygame.event.get()
+        
         #colision mouse/boton
-        if (self.rect.collidepoint(pos)):
-            if (pygame.mouse.get_pressed()[0] == 1 and self.click == False):
-                action = True
-                self.click = True
+        for event in event_list:
+            if (event.type == pygame.MOUSEBUTTONDOWN):
                 self.click_option_sfx.set_volume(0.2)
                 self.click_option_sfx.play()
-            if (pygame.mouse.get_pressed()[0] == 0):
-                action = False
+                self.write_on = self.rect.collidepoint(pos)
+            if (event.type == pygame.KEYDOWN and self.write_on):
+                if event.key == pygame.K_RETURN:
+                    self.write_on = False
+                elif event.key == pygame.K_BACKSPACE:
+                    self._wrting = self._wrting[:-1]
+                else:
+                    self._wrting += event.unicode
+    
+    def draw(self):
+        super().draw()
+        self.image.blit(self.screen,(self.rect_wrting.x,self.rect_wrting.y))
+        #mostrar wrtingo en pantalla       
         
-        return action
-
     def update(self):
         self.draw()
-        action = self.button_pressed()
-
-        for event in pygame.event.get():
-            if (event.type == pygame.KEYDOWN and action):
-                if (event.key == pygame.K_BACKSPACE):
-                    self._text = self._text[:-1]
-                else:
-                    self._text += event.unicode
-
-
-
-'''
+        self.box_pressed()
+        #print(self._wrting)
+        #print(self.write_on)

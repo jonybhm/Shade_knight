@@ -38,15 +38,18 @@ class Items(pygame.sprite.Sprite):
             #verificar el tipo de item
             if (self.type == 1): #type health
                 player.health += 10
+                player.score += 5
                 if (player.health > player.max_health):
                     player.health = player.max_health
             elif (self.type == 7): #type money
-                player.money += 10
+                player.money += 25
                 player.score += player.money 
             elif (self.type == 10): #type magic
                 player.magic += 1 
+                player.score += 2
             elif (self.type == 4): #type magic
                 player.health -= 10    
+                player.score -= 5
             self.kill()#borra el sprite del grupo
 
         #verificar si los items estan fuera de la pantalla

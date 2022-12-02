@@ -14,7 +14,10 @@ pygame.display.set_caption("Shade Knigth")
 current_level = 0
 run = True
 
-ranking_info =[{"position":1,"name":"juan","score":1200},{"position":2,"name":"roberto","score":600}] #lista de prueba para form rankings
+ranking_info_name = "NOMBRE"
+ranking_info_score = "PUNTAJE"
+ranking_info_db = []
+create_table_sqlite()
 
 
 #FORMULARIOS!!
@@ -22,10 +25,10 @@ form_main_menu = FormMainMenu(name="form_main_menu",master_surface=main_screen,x
 form_options = FormOptions(name="form_options",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
 form_level_select = FormLevelSelect(name="form_level_select",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
 form_start_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="other_1")
-'''form_start_level_2 = FormStartLevel(name="form_start_level_2",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="level_1")
-form_start_level_3 = FormStartLevel(name="form_start_level_3",master_surface=main_screen,x=0,y=0,active=True,level_num=2,music_name="level_2")'''
 form_pause = FormPause(name="form_pause",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="main_menu")
-form_rankings = FormRanking(name="form_rankings",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu",ranking_info_list=ranking_info)
+form_rankings = FormRanking(name="form_rankings",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="ending",
+ranking_list=ranking_info_name)
+form_enter_name = FormEnterName(name="form_enter_name",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="ending")
 
 #form_restart_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=0,music_name="other_1")
 
@@ -41,26 +44,42 @@ while (run):
                     form_pause.set_active("form_pause")
     
     #UPDATE Y DRAW DE FORMULARIOS
-    if(form_main_menu.active):
+    if(form_main_menu.active):#MENU PRINCIPAL
         form_main_menu.update()
         form_main_menu.draw()
-    elif(form_options.active):
+        if(form_main_menu.start_first_level == True): #COMENZAR DESDE EL PRIMER NIVEL
+            current_level=0
+            form_main_menu.start_first_level = False
+            form_start_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="other_1")
+            form_start_level.set_active("form_start_level")
+        
+    elif(form_options.active): #AVANCE DE NIVELES
         form_options.update()
         form_options.draw()
-    elif(form_level_select.active):
+    elif(form_level_select.active): #AVANCE DE NIVELES
         form_level_select.update()
         form_level_select.draw()
-    elif(form_start_level.active):
+        if(form_level_select.is_selected == True): #SELECCION DE NIVELES
+            current_level=form_level_select.level_selected
+            form_level_select.is_selected = False
+            form_start_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="other_1")
+            form_start_level.set_active("form_start_level")
+    elif(form_start_level.active): #INICIO DE NIVEL
         form_start_level.update(event_list)
         form_start_level.draw()
         form_start_level.level_advance()
-        if (form_start_level.advance_level == True ):
-            if(current_level < len(form_start_level.level_info)):
+        if (form_start_level.advance_level == True ): #AVANCE DE NIVELES
+            if(current_level < len(form_start_level.level_info)-1):
                 form_start_level.advance_level = False
                 current_level += 1         
                 form_start_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="other_1")
                 form_start_level.set_active("form_start_level")
-        if (form_pause.level_restart == True ):
+        if(form_start_level.game_ending == True): #INGRESAR NOMBRE PARA RANKINGS
+            form_start_level.game_ending = False
+            form_enter_name = FormEnterName(name="form_enter_name",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="ending")
+            form_enter_name.set_active("form_enter_name")
+           
+        if (form_pause.level_restart == True ): #REINICIO DE NIVELES
             form_start_level.restart_level()
             form_pause.level_restart = False
             form_start_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="other_1")
@@ -70,18 +89,26 @@ while (run):
     elif(form_pause.active):
         form_pause.update()
         form_pause.draw()
+    elif(form_enter_name.active):
+        form_enter_name.update()
+        form_enter_name.draw()
+        if(form_enter_name.confirm_name == True):
+            
+            #print(form_enter_name.text_box._wrting)
+            #print(type(form_enter_name.text_box._wrting))
+            form_enter_name.confirm_name = False
+                    
+            add_rows_sqlite(form_enter_name.text_box._wrting,form_start_level.player.score) #agrega info a la base de datos
+            ranking_info_db = view_rows_sqlite()
+            print(ranking_info_db)          
+
+            form_rankings = FormRanking(name="form_rankings",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="ending",
+            ranking_list=ranking_info_db)
+            form_rankings.set_active("form_rankings")
     elif(form_rankings.active):
         form_rankings.update()
         form_rankings.draw()
-    '''elif(form_start_level_2.active):
-        
-        form_start_level_2.update(event_list)
-        form_start_level_2.draw()
-        current_level = 2
-    elif(form_start_level_3.active):
-        form_start_level_3.update(event_list)
-        form_start_level_3.draw()
-        current_level = 3'''
+   
                     
     pygame.display.update()
 

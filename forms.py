@@ -42,7 +42,7 @@ class FormMainMenu(Form):
     def __init__(self,name,master_surface,x,y,active,level_num,music_name):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
         
-              
+        self.start_first_level = False
         self.music_update()
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
         self.menu_ppal_title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
@@ -66,6 +66,7 @@ class FormMainMenu(Form):
         
     def click_start(self,parametro):  
         self.set_active(parametro)
+        self.start_first_level = True
         
 
     def click_level_select(self,parametro): 
@@ -141,8 +142,9 @@ class FormOptions(Form):
 class FormLevelSelect(Form):
     def __init__(self,name,master_surface,x,y,active,level_num,music_name):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
-                   
-              
+        self.level_selected = 0
+        self.is_selected = False           
+        
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
         self.levels_title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
         self.levels_subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="ELEGIR NIVEL",screen=master_surface,font_size=50)
@@ -162,12 +164,18 @@ class FormLevelSelect(Form):
     
     def click_level_1(self,parametro): 
         self.set_active(parametro)
-    
+        self.level_selected = 0
+        self.is_selected = True  
+
     def click_level_2(self,parametro): 
         self.set_active(parametro)
-    
+        self.level_selected = 1
+        self.is_selected = True
+
     def click_level_3(self,parametro): 
         self.set_active(parametro)
+        self.level_selected = 2
+        self.is_selected = True
 
     def click_back(self,parametro): 
         self.set_active(parametro)
@@ -187,6 +195,7 @@ class FormStartLevel(Form):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
         self.level_restart = False
         self.advance_level = False
+        self.game_ending = False
         self.screen = master_surface
         
         self.music_update()
@@ -345,9 +354,10 @@ class FormStartLevel(Form):
 
     def level_advance(self):    
         #avanzar de nivel
+        
         if(self.player.kill_count == self.enemies.total_enemies):
             
-            if(self.level_num < len(self.level_info)):
+            if(self.level_num < len(self.level_info)-1):
                 self.player = Character(char_type="player",x=200,y=200,speed=8,magic=5,health=100) #restart_player
                 self.spell_group_player.empty()
                 self.spell_group_enemy.empty()
@@ -355,32 +365,9 @@ class FormStartLevel(Form):
                 self.items_group.empty()
                 self.enemy_group.empty()
                 self.advance_level = True
-
+            else:
+                self.game_ending = True
                 
-            '''else:
-                ingresar_score = True
-                name_title = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="INGRESE SU NOMBRE:",screen=main_screen,font_size=50)
-                
-                name_input = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="{0}".format(ingreso_teclado),screen=main_screen,font_size=75)
-                score_title = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="PUNTAJE:",screen=main_screen)
-                score = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="{0}".format(player.score),screen=main_screen)
-                enter_button = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+100,text="ENTER".format(player.score),screen=main_screen)
-                name_title.draw()
-                name_input.draw()
-                score_title.draw()
-                score.draw()
-                enter_button.draw()
-                
-                #ACCIONES DE BOTONES
-                if(enter_button.button_pressed()):
-                    ingresar_score = False
-                    create_table_sqlite()
-                    add_rows_sqlite(ingreso_teclado,player.score)
-                    view_rows_sqlite()
-                pygame.mixer.music.stop()
-                pygame.mixer.music.load(PATH + r"\\music\\main_menu.wav")
-                pygame.mixer.music.set_volume(0.3)
-                pygame.mixer.music.play(-1,0.0,7000)'''
     
     def restart_level(self):
 
@@ -408,7 +395,7 @@ class FormPause(Form):
         self.menu_ppal_subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="PAUSA",screen=master_surface,font_size=50)
 
         self.button_resume = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="VOLVER AL NIVEL",screen=master_surface
-        ,on_click=self.click_resume,on_click_param="form_start_level_{0}".format(self.current_level_number))
+        ,on_click=self.click_resume,on_click_param="form_start_level")
         self.button_restart = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="REINICIAR NIVEL",screen=master_surface
         ,on_click=self.click_restart,on_click_param="form_start_level")
         self.button_music = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+100,text="MUSICA: ON/OFF",screen=master_surface
@@ -444,27 +431,59 @@ class FormPause(Form):
         super().draw()
         for widget in self.widget_list:    
             widget.update()
-        
-
-class FormRanking(Form):
-    def __init__(self,name,master_surface,x,y,active,level_num,music_name,ranking_info_list):
+      
+class FormEnterName(Form):
+    def __init__(self,name,master_surface,x,y,active,level_num,music_name):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
                    
-        self.ranking_info_list = ranking_info_list
+        self.confirm_name = False
                    
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
         self.title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
+        self.subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="INGRESE SU NOMBRE:",screen=master_surface,font_size=50)
+        
+        self.text_box = TextBox(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="_________________",screen=master_surface)
+        self.button_confirm_name = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+100,text="CONFIRMAR NOMBRE",screen=master_surface
+        ,on_click=self.click_confirm_name)
+        
+        self.widget_list = [self.title,self.subtitle,self.text_box,self.button_confirm_name]
+
+        
+    
+    def click_confirm_name(self,parametro): 
+        self.confirm_name = True
+        
+    def draw(self):
+        super().draw()
+        for widget in self.widget_list:    
+            widget.draw()
+        self.writing_text  = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-20,text="{0}".format(self.text_box._wrting.upper()),
+        screen=self.master_surface,font_size=30)
+        self.writing_text.draw()
+
+    def update(self):
+        super().draw()
+        #print(self.text_box._wrting)
+        #print(type(self.name_player_writen))
+        for widget in self.widget_list:    
+            widget.update()  
+
+class FormRanking(Form):
+    def __init__(self,name,master_surface,x,y,active,level_num,music_name,ranking_list):
+        super().__init__(name,master_surface,x,y,active,level_num,music_name)
+                   
+                          
+        #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
+        self.title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
         self.subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="TOP RANKINGS",screen=master_surface,font_size=50)
-        for ranked_player in ranking_info_list:
-            for i in range(len(ranking_info_list)):
-                self.position_rank = TextTitle(x=SCREEN_WIDTH//2-100,y=SCREEN_HEIGHT//2+i*25,text="{0}".format(ranked_player["position"]),screen=master_surface,font_size=25)
-                self.name_rank = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+i*25,text="{0}".format(ranked_player["name"]),screen=master_surface,font_size=25)
-                self.score_rank = TextTitle(x=SCREEN_WIDTH//2+100,y=SCREEN_HEIGHT//2+i*25,text="{0}".format(ranked_player["score"]),screen=master_surface,font_size=25)
+        
+        self.name_rank = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="{0}".format(ranking_list),screen=master_surface,font_size=25)
+        
 
         self.button_return_menu = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="VOLVER AL MENU",screen=master_surface
         ,on_click=self.click_return_menu,on_click_param="form_main_menu")
                           
-        self.widget_list = [self.title,self.subtitle,self.position_rank,self.name_rank,self.score_rank,self.button_return_menu]
+        self.widget_list = [self.title,self.subtitle,self.name_rank,self.button_return_menu]
     
    
     def click_return_menu(self,parametro): 
