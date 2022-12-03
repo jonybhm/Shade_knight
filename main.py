@@ -15,9 +15,8 @@ global_score = 0
 current_level = 0
 run = True
 
-ranking_info_name = "NOMBRE"
-ranking_info_score = "PUNTAJE"
-ranking_info_db = []
+
+ranking_info_db = view_rows_sqlite()
 create_table_sqlite()
 
 
@@ -25,11 +24,11 @@ create_table_sqlite()
 form_main_menu = FormMainMenu(name="form_main_menu",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
 form_options = FormOptions(name="form_options",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
 form_level_select = FormLevelSelect(name="form_level_select",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
-form_start_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="other_1")
+form_start_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="main_menu")
 form_pause = FormPause(name="form_pause",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="main_menu")
-form_rankings = FormRanking(name="form_rankings",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="ending",
-ranking_list=ranking_info_name)
-form_enter_name = FormEnterName(name="form_enter_name",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="ending")
+form_rankings = FormRanking(name="form_rankings",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu",
+ranking_list=ranking_info_db)
+form_enter_name = FormEnterName(name="form_enter_name",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
 
 #form_restart_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=0,music_name="other_1")
 
@@ -73,9 +72,9 @@ while (run):
         form_start_level.level_advance()
         print(global_score)
         
-        global_score += form_start_level.player.score #puntaje global que se actuliza mientras los niveles avanzan
         
         if (form_start_level.advance_level == True ): #AVANCE DE NIVELES
+            global_score += form_start_level.player.score #puntaje global que se actuliza mientras los niveles avanzan
             if(current_level < len(form_start_level.level_info)-1):
                 form_start_level.advance_level = False
                 current_level += 1         
@@ -87,7 +86,7 @@ while (run):
             form_enter_name = FormEnterName(name="form_enter_name",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="ending")
             form_enter_name.set_active("form_enter_name")
            
-        if (form_pause.level_restart == True ): #REINICIO DE NIVELES
+        if (form_pause.level_restart == True or form_start_level.player.is_alive == False): #REINICIO DE NIVELES
             form_start_level.restart_level()
             form_pause.level_restart = False
             form_start_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="other_1")

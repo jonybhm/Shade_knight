@@ -39,6 +39,7 @@ class Button(Widget):
         #colision mouse/boton
         if (self.rect.collidepoint(pos)):
             if (pygame.mouse.get_pressed()[0] == 1):
+                pygame.time.delay(300)
                 self.on_click(self.on_click_param)
                 self.click_option_sfx.set_volume(0.2)
                 self.click_option_sfx.play()

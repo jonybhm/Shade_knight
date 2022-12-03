@@ -18,6 +18,7 @@ class Character(pygame.sprite.Sprite):
         self.start_magic = magic
         self.spell_cooldown = 0
         self.spell_small_cooldown = 0
+        
 
         self.money = 0
         self.dmg_count = 0
@@ -125,11 +126,6 @@ class Character(pygame.sprite.Sprite):
             self.small_spell_sfx.play()
             
             
-    def cooldown_update(self):
-        if (self.spell_cooldown > 0): 
-            self.spell_cooldown -= 1
-        if (self.spell_small_cooldown > 0):
-            self.spell_small_cooldown -= 1
 
     def verify_is_alive_update(self):
         if (self.health <= 0):
@@ -138,6 +134,12 @@ class Character(pygame.sprite.Sprite):
             self.is_alive = False
             self.action_update(1)
             
+    def cooldown_update(self):
+        if (self.spell_cooldown > 0): 
+            self.spell_cooldown -= 1
+        if (self.spell_small_cooldown > 0):
+            self.spell_small_cooldown -= 1
+        
         
     def animation_update(self):
         #avanzar el frame en la animacion

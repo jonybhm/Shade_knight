@@ -35,6 +35,7 @@ class Form:
         
         
         
+        
     def draw(self):
         self.master_surface.blit(self.surface,self.slave_rect)
 
@@ -43,13 +44,14 @@ class FormMainMenu(Form):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
         
         self.start_first_level = False
-        self.music_update()
+        self.music_update() 
+        
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
         self.menu_ppal_title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
         self.menu_ppal_subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="MENU PRINCIPAL",screen=master_surface,font_size=50)
 
         self.button_start = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="COMENZAR",screen=master_surface
-        ,on_click=self.click_start,on_click_param="form_start_level")
+        ,on_click=self.click_start)
         self.button_level_select = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="SELECCIONAR NIVEL",screen=master_surface
         ,on_click=self.click_level_select,on_click_param="form_level_select")
         self.button_options = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+100,text="OPCIONES",screen=master_surface
@@ -65,7 +67,7 @@ class FormMainMenu(Form):
         #ACCIONES DE BOTONES
         
     def click_start(self,parametro):  
-        self.set_active(parametro)
+        
         self.start_first_level = True
         
 
@@ -196,6 +198,7 @@ class FormStartLevel(Form):
         self.level_restart = False
         self.advance_level = False
         self.game_ending = False
+               
         self.screen = master_surface
               
         self.music_update()
@@ -273,7 +276,8 @@ class FormStartLevel(Form):
 
         #texto en pantalla
         #mostrar info en pantalla / MODO DEBUG
-        if (DEBUG_MODE): 
+        if (DEBUG_MODE):
+           
             self.game_info_total_enemigos = TextTitle(x=150,y=SCREEN_HEIGHT-225,
             text="TOTAL ENEMIGOS: {0}".format(self.enemies.total_enemies),screen=self.screen,font_size=25)
             self.game_info_vencidos = TextTitle(x=150,y=SCREEN_HEIGHT-200,
@@ -358,13 +362,13 @@ class FormStartLevel(Form):
         if(self.player.kill_count == self.enemies.total_enemies):
             
             if(self.level_num < len(self.level_info)-1):
-                self.player = Character(char_type="player",x=200,y=200,speed=8,magic=5,health=100) #restart_player
+                self.advance_level = True
+                #self.player = Character(char_type="player",x=200,y=200,speed=8,magic=5,health=100) #restart_player
                 self.spell_group_player.empty()
                 self.spell_group_enemy.empty()
                 self.platform_group.empty()
                 self.items_group.empty()
                 self.enemy_group.empty()
-                self.advance_level = True
             else:
                 self.game_ending = True
                 
@@ -378,7 +382,8 @@ class FormStartLevel(Form):
         self.items_group.empty()
         self.enemy_group.empty()
         self.level_restart = True
-        
+
+       
 
         
         
@@ -435,7 +440,8 @@ class FormPause(Form):
 class FormEnterName(Form):
     def __init__(self,name,master_surface,x,y,active,level_num,music_name):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
-                   
+       
+        self.music_update()
         self.confirm_name = False
                    
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
@@ -462,6 +468,7 @@ class FormEnterName(Form):
         self.writing_text.draw()
 
     def update(self):
+        ##super().music_update()
         super().draw()
         #print(self.text_box._wrting)
         #print(type(self.name_player_writen))
