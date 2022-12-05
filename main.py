@@ -74,7 +74,7 @@ while (run):
         form_start_level.update(event_list)
         form_start_level.draw()
         form_start_level.level_advance()
-        print(global_score)
+        #print(global_score)
         
         
         if (form_start_level.advance_level == True ): #AVANCE DE NIVELES

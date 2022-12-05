@@ -118,4 +118,4 @@ class TextBox(Widget):
         self.draw()
         self.box_pressed()
         #print(self._wrting)
-        #print(self.write_on)
+        print(self.write_on)
