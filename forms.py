@@ -363,7 +363,7 @@ class FormStartLevel(Form):
         self.enemies.update(self.player)
 
         if(self.level_timer >0):
-            self.level_timer -=1
+            self.level_timer -=2
 
         
 
