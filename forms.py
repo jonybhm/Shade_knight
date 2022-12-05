@@ -215,6 +215,7 @@ class FormStartLevel(Form):
         self.level_restart = False
         self.advance_level = False
         self.game_ending = False
+        self.level_timer = 6000
                
         self.screen = master_surface
               
@@ -313,6 +314,9 @@ class FormStartLevel(Form):
             text="HEALTH TIMER: {0}".format(self.level.timer_health),screen=self.screen,font_size=25)
             self.game_info_magic_timer = TextTitle(x=150,y=SCREEN_HEIGHT-25,
             text="MAGIC TIMER: {0}".format(self.level.timer_magic),screen=self.screen,font_size=25)
+
+        #salud personaje en pantalla 
+        self.info_timer = TextTitle(x=100,y=100,text="TIEMPO RESTANTE: {0}".format(self.level_timer//100),screen=self.screen,font_size=25)
         
         #salud personaje en pantalla 
         self.info_salud_player = TextTitle(x=100,y=20,text="SALUD: {0}%".format(self.player.health),screen=self.screen,font_size=25)
@@ -325,7 +329,7 @@ class FormStartLevel(Form):
        
         self.widget_list = [self.game_info_total_enemigos,self.game_info_vencidos,self.game_info_bog_spell,self.game_info_small_spell,
         self.game_info_enemy_timer,self.game_info_health_timer,self.game_info_magic_timer,self.game_info_money_timer,self.game_info_score,
-        self.info_salud_player,self.info_magia_player,self.info_dinero_player]
+        self.info_salud_player,self.info_magia_player,self.info_dinero_player,self.info_timer]
 
         self.clock.tick(FPS)
          
@@ -358,6 +362,9 @@ class FormStartLevel(Form):
         #update timer enemigos
         self.enemies.update(self.player)
 
+        if(self.level_timer >0):
+            self.level_timer -=1
+
         
 
         #actualizar las acciones del personaje
@@ -376,7 +383,7 @@ class FormStartLevel(Form):
     def level_advance(self):    
         #avanzar de nivel
         
-        if(self.player.kill_count == self.enemies.total_enemies):
+        if(self.player.kill_count == self.enemies.total_enemies or self.level_timer == 0):
             
             if(self.level_num < len(self.level_info)-1):
                 self.advance_level = True
