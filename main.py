@@ -29,7 +29,7 @@ form_start_level = FormStartLevel(name="form_start_level",master_surface=main_sc
 form_pause = FormPause(name="form_pause",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="main_menu")
 form_rankings = FormRanking(name="form_rankings",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu",
 ranking_list=ranking_info_db)
-form_enter_name = FormEnterName(name="form_enter_name",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
+form_enter_name = FormEnterName(name="form_enter_name",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu",score=global_score)
 form_screen_transition_reset = FormScreenTransition(name="form_screen_transition_reset",master_surface=main_screen,x=0,y=0,active=True,speed=4,direction=1,level_num=current_level,music_name="main_menu")
 form_screen_transition_advance = FormScreenTransition(name="form_screen_transition_advance",master_surface=main_screen,x=0,y=0,active=True,speed=4,direction=1,level_num=current_level+1,music_name="main_menu")
 
@@ -74,7 +74,7 @@ while (run):
         form_start_level.update(event_list)
         form_start_level.draw()
         form_start_level.level_advance()
-        #print(global_score)
+        print(global_score)
         
         
         if (form_start_level.advance_level == True ): #AVANCE DE NIVELES
@@ -86,7 +86,7 @@ while (run):
 
         if(form_start_level.game_ending == True): #INGRESAR NOMBRE PARA RANKINGS
             form_start_level.game_ending = False
-            form_enter_name = FormEnterName(name="form_enter_name",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="ending")
+            form_enter_name = FormEnterName(name="form_enter_name",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="ending",score=global_score)
             form_enter_name.set_active("form_enter_name")
            
         if (form_pause.level_restart == True or form_start_level.player.is_alive == False): #REINICIO DE NIVELES

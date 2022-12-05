@@ -469,7 +469,7 @@ class FormPause(Form):
             widget.update()
       
 class FormEnterName(Form):
-    def __init__(self,name,master_surface,x,y,active,level_num,music_name):
+    def __init__(self,name,master_surface,x,y,active,level_num,music_name,score):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
 
         #FONDO menu ppal
@@ -478,6 +478,7 @@ class FormEnterName(Form):
         self.slave_rect = self.surface.get_rect()
         self.slave_rect.x = x
         self.slave_rect.y = y
+        
        
         self.music_update()
         self.confirm_name = False
@@ -485,12 +486,13 @@ class FormEnterName(Form):
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
         self.title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
         self.subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="INGRESE SU NOMBRE:",screen=master_surface,font_size=50)
+        self.subtitle_score = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="PUNTAJE:{0}".format(score),screen=master_surface,font_size=30)
         
         self.text_box = TextBox(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="_________________",screen=master_surface)
         self.button_confirm_name = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+100,text="CONFIRMAR NOMBRE",screen=master_surface
         ,on_click=self.click_confirm_name)
         
-        self.widget_list = [self.title,self.subtitle,self.text_box,self.button_confirm_name]
+        self.widget_list = [self.title,self.subtitle,self.subtitle_score,self.text_box,self.button_confirm_name]
 
         
     
