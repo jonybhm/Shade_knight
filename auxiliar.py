@@ -25,10 +25,5 @@ def load_json(path:str)->list:
 
     return dic_file["levels"]
 
-def _groups(group_spells_player,group_spells_enemies,group_platforms,group_items,group_enemies):
-    group_spells_player.empty()
-    group_spells_enemies.empty()
-    group_platforms.empty()
-    group_items.empty()
-    group_enemies.empty()
+
 

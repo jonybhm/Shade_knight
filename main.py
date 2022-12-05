@@ -8,7 +8,8 @@ from forms import *
 pygame.init()
 
 #pantalla y nombre de ventana
-main_screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+main_screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT),pygame.SCALED)
+
 pygame.display.set_caption("Shade Knigth")
 
 global_score = 0

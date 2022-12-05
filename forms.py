@@ -133,7 +133,7 @@ class FormOptions(Form):
         pygame.mixer.music.pause()
     
     def click_full_screen(self,parametro): 
-        pass
+        pygame.display.toggle_fullscreen()
 
     def click_back(self,parametro): 
         self.set_active(parametro)
@@ -412,6 +412,7 @@ class FormPause(Form):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
         self.level_restart = False
         self.current_level_number = level_num
+        self.paused = pygame.mixer.music.get_busy() #verifica si esta sonando la musica
 
         #FONDO menu ppal
         self.surface = master_surface
@@ -448,7 +449,12 @@ class FormPause(Form):
                 
 
     def click_music(self,parametro):
-        pygame.mixer.music.pause()
+        #pygame.mixer.music.pause()
+        if (self.paused):
+            pygame.mixer.music.unpause()
+        if (not self.paused):
+            pygame.mixer.music.pause()
+        self.paused = not self.paused
         
     def click_return_menu(self,parametro): 
         self.set_active(parametro)
