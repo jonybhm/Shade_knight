@@ -15,12 +15,7 @@ class Form:
         self.level_num = level_num
         self.music_name = music_name
                 
-        #FONDO menu ppal
-        self.surface = pygame.image.load(PATH + r"\\menu\\menu_widget.png").convert_alpha()
-        self.surface = pygame.transform.scale(self.surface,(SCREEN_WIDTH,SCREEN_HEIGHT))
-        self.slave_rect = self.surface.get_rect()
-        self.slave_rect.x = x
-        self.slave_rect.y = y
+        
 
     def set_active(self,name):
         for aux_form in self.forms_dict.values():
@@ -45,6 +40,13 @@ class FormMainMenu(Form):
         
         self.start_first_level = False
         self.music_update() 
+
+        #FONDO menu ppal
+        self.surface = pygame.image.load(PATH + r"\\menu\\menu_widget.png").convert_alpha()
+        self.surface = pygame.transform.scale(self.surface,(SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.slave_rect = self.surface.get_rect()
+        self.slave_rect.x = x
+        self.slave_rect.y = y
         
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
         self.menu_ppal_title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
@@ -99,6 +101,13 @@ class FormMainMenu(Form):
 class FormOptions(Form):
     def __init__(self,name,master_surface,x,y,active,level_num,music_name):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
+
+        #FONDO menu ppal
+        self.surface = pygame.image.load(PATH + r"\\menu\\menu_widget.png").convert_alpha()
+        self.surface = pygame.transform.scale(self.surface,(SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.slave_rect = self.surface.get_rect()
+        self.slave_rect.x = x
+        self.slave_rect.y = y
         
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
         self.options_title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
@@ -144,6 +153,14 @@ class FormOptions(Form):
 class FormLevelSelect(Form):
     def __init__(self,name,master_surface,x,y,active,level_num,music_name):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
+
+        #FONDO menu ppal
+        self.surface = pygame.image.load(PATH + r"\\menu\\menu_widget.png").convert_alpha()
+        self.surface = pygame.transform.scale(self.surface,(SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.slave_rect = self.surface.get_rect()
+        self.slave_rect.x = x
+        self.slave_rect.y = y
+
         self.level_selected = 0
         self.is_selected = False           
         
@@ -395,6 +412,14 @@ class FormPause(Form):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
         self.level_restart = False
         self.current_level_number = level_num
+
+        #FONDO menu ppal
+        self.surface = master_surface
+        #self.surface = pygame.transform.scale(self.surface,(SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.slave_rect = self.surface.get_rect()
+        self.slave_rect.x = x
+        self.slave_rect.y = y
+
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
         self.menu_ppal_title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
         self.menu_ppal_subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="PAUSA",screen=master_surface,font_size=50)
@@ -440,6 +465,13 @@ class FormPause(Form):
 class FormEnterName(Form):
     def __init__(self,name,master_surface,x,y,active,level_num,music_name):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
+
+        #FONDO menu ppal
+        self.surface = pygame.image.load(PATH + r"\\menu\\menu_widget.png").convert_alpha()
+        self.surface = pygame.transform.scale(self.surface,(SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.slave_rect = self.surface.get_rect()
+        self.slave_rect.x = x
+        self.slave_rect.y = y
        
         self.music_update()
         self.confirm_name = False
@@ -478,6 +510,14 @@ class FormEnterName(Form):
 class FormRanking(Form):
     def __init__(self,name,master_surface,x,y,active,level_num,music_name,ranking_list):
         super().__init__(name,master_surface,x,y,active,level_num,music_name)
+
+        #FONDO menu ppal
+        self.surface = pygame.image.load(PATH + r"\\menu\\menu_widget.png").convert_alpha()
+        self.surface = pygame.transform.scale(self.surface,(SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.slave_rect = self.surface.get_rect()
+        self.slave_rect.x = x
+        self.slave_rect.y = y
+
         self.ranking_on_screen = []
         self.ranking_list=ranking_list
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
@@ -514,3 +554,44 @@ class FormRanking(Form):
         for widget in self.widget_list:    
             widget.update()
 
+
+class FormScreenTransition(Form):
+    def __init__(self,name,master_surface,x,y,level_num,music_name,active,speed,direction):
+        super().__init__(name,master_surface,x,y,active,level_num,music_name)
+
+        #FONDO menu ppal
+        self.surface = master_surface
+        #self.surface = pygame.transform.scale(self.surface,(SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.slave_rect = self.surface.get_rect()
+        self.slave_rect.x = x
+        self.slave_rect.y = y
+
+        self.direction = direction
+        self.speed = speed
+        self.transition_is_over = False
+        
+        self.timer = 600
+        
+        self.transition_rect = pygame.Surface((SCREEN_WIDTH,SCREEN_HEIGHT))#draw.rect(self.master_surface,BLACK,(self.x,self.y,SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.transition_rect_rect = self.transition_rect.get_rect()
+        self.transition_rect.fill(BLACK)
+        self.title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="NIVEL {0}".format(level_num+1),screen=master_surface,font_size=75)
+
+    def transition(self):
+        self.transition_is_over = False
+        
+        #self.is_move_left = True
+               
+        if (self.timer==0):
+            self.transition_is_over = True
+            self.timer = 600
+
+    def timer_update(self):
+        if(self.timer > 0):
+            self.timer -= 1
+
+    def update(self):
+        self.master_surface.blit(self.transition_rect,(self.transition_rect_rect.x,self.transition_rect_rect.y))
+        self.title.draw()
+        self.transition()
+        self.timer_update()

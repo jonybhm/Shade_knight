@@ -29,6 +29,9 @@ form_pause = FormPause(name="form_pause",master_surface=main_screen,x=0,y=0,acti
 form_rankings = FormRanking(name="form_rankings",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu",
 ranking_list=ranking_info_db)
 form_enter_name = FormEnterName(name="form_enter_name",master_surface=main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
+form_screen_transition_reset = FormScreenTransition(name="form_screen_transition_reset",master_surface=main_screen,x=0,y=0,active=True,speed=4,direction=1,level_num=current_level,music_name="main_menu")
+form_screen_transition_advance = FormScreenTransition(name="form_screen_transition_advance",master_surface=main_screen,x=0,y=0,active=True,speed=4,direction=1,level_num=current_level+1,music_name="main_menu")
+
 
 #form_restart_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=0,music_name="other_1")
 
@@ -76,10 +79,9 @@ while (run):
         if (form_start_level.advance_level == True ): #AVANCE DE NIVELES
             global_score += form_start_level.player.score #puntaje global que se actuliza mientras los niveles avanzan
             if(current_level < len(form_start_level.level_info)-1):
-                form_start_level.advance_level = False
-                current_level += 1         
-                form_start_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="other_1")
-                form_start_level.set_active("form_start_level")
+                form_screen_transition_advance = FormScreenTransition(name="form_screen_transition_advance",master_surface=main_screen,x=0,y=0,active=True,speed=4,direction=1,level_num=current_level+1,music_name="main_menu")
+                form_screen_transition_advance.set_active("form_screen_transition_advance")
+                
 
         if(form_start_level.game_ending == True): #INGRESAR NOMBRE PARA RANKINGS
             form_start_level.game_ending = False
@@ -87,10 +89,10 @@ while (run):
             form_enter_name.set_active("form_enter_name")
            
         if (form_pause.level_restart == True or form_start_level.player.is_alive == False): #REINICIO DE NIVELES
-            form_start_level.restart_level()
-            form_pause.level_restart = False
-            form_start_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="other_1")
-            form_start_level.set_active("form_start_level")
+            form_screen_transition_reset = FormScreenTransition(name="form_screen_transition_reset",master_surface=main_screen,x=0,y=0,active=True,speed=4,direction=1,level_num=current_level,music_name="main_menu")
+            form_screen_transition_reset.set_active("form_screen_transition_reset")
+
+            
 
     
     elif(form_pause.active):
@@ -115,6 +117,23 @@ while (run):
         form_rankings.update()
         form_rankings.draw()
    
+    elif(form_screen_transition_reset.active):
+        form_screen_transition_reset.update()
+        form_screen_transition_reset.draw()
+        if(form_screen_transition_reset.transition_is_over == True):
+            form_start_level.restart_level()
+            form_pause.level_restart = False
+            form_start_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="other_1")
+            form_start_level.set_active("form_start_level")
+    
+    elif(form_screen_transition_advance.active):
+        form_screen_transition_advance.update()
+        form_screen_transition_advance.draw()
+        if(form_screen_transition_advance.transition_is_over == True):
+            form_start_level.advance_level = False
+            current_level += 1         
+            form_start_level = FormStartLevel(name="form_start_level",master_surface=main_screen,x=0,y=0,active=True,level_num=current_level,music_name="other_1")
+            form_start_level.set_active("form_start_level")
                     
     pygame.display.update()
 
