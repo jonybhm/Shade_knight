@@ -16,7 +16,7 @@ ANIMATION_COOLDOWN = 100 #tiempo hasta el siguiente frame
 
 TILE =10
 
-DEBUG_MODE = True
+DEBUG_MODE = False
 
 
 

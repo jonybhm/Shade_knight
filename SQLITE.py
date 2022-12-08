@@ -32,7 +32,7 @@ def view_rows_sqlite():
         cursor=conexion.execute('''SELECT id, nombre, puntaje
                                 FROM rankings
                                 ORDER BY puntaje DESC
-                                LIMIT 5
+                                LIMIT 10
                                 ''')
         lista = []
         for fila in cursor:

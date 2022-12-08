@@ -2,7 +2,7 @@ import json
 import pygame
 from constantes import *
 from level import Level
-from manager import *
+from enemy_manager import *
 from character import *
 
 
@@ -24,6 +24,4 @@ def load_json(path:str)->list:
         dic_file = json.load(file)
 
     return dic_file["levels"]
-
-
 

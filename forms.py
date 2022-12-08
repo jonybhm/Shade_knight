@@ -215,7 +215,8 @@ class FormStartLevel(Form):
         self.level_restart = False
         self.advance_level = False
         self.game_ending = False
-        self.level_timer = 6000
+        self.level_timer = 60
+        self.first_last_timer = pygame.time.get_ticks()
                
         self.screen = master_surface
               
@@ -273,6 +274,11 @@ class FormStartLevel(Form):
     def draw(self):
         for widget in self.widget_list:    
             widget.draw()
+
+        if(DEBUG_MODE):
+            for debug_text in self.widget_list_debug:    
+                debug_text.draw()
+            
         
         self.player.draw(screen=self.screen)
 
@@ -314,9 +320,12 @@ class FormStartLevel(Form):
             text="HEALTH TIMER: {0}".format(self.level.timer_health),screen=self.screen,font_size=25)
             self.game_info_magic_timer = TextTitle(x=150,y=SCREEN_HEIGHT-25,
             text="MAGIC TIMER: {0}".format(self.level.timer_magic),screen=self.screen,font_size=25)
+            
+            self.widget_list_debug = [self.game_info_total_enemigos,self.game_info_vencidos,self.game_info_bog_spell,self.game_info_small_spell,
+            self.game_info_enemy_timer,self.game_info_health_timer,self.game_info_magic_timer,self.game_info_money_timer,self.game_info_score]
 
         #salud personaje en pantalla 
-        self.info_timer = TextTitle(x=100,y=100,text="TIEMPO RESTANTE: {0}".format(self.level_timer//100),screen=self.screen,font_size=25)
+        self.info_timer = TextTitle(x=100,y=100,text="TIEMPO RESTANTE: {0}".format(self.level_timer),screen=self.screen,font_size=25)
         
         #salud personaje en pantalla 
         self.info_salud_player = TextTitle(x=100,y=20,text="SALUD: {0}%".format(self.player.health),screen=self.screen,font_size=25)
@@ -327,9 +336,7 @@ class FormStartLevel(Form):
         #dinero personaje en pantalla
         self.info_dinero_player = TextTitle(x=100,y=70,text="DINERO: X{0}".format(self.player.money),screen=self.screen,font_size=25)
        
-        self.widget_list = [self.game_info_total_enemigos,self.game_info_vencidos,self.game_info_bog_spell,self.game_info_small_spell,
-        self.game_info_enemy_timer,self.game_info_health_timer,self.game_info_magic_timer,self.game_info_money_timer,self.game_info_score,
-        self.info_salud_player,self.info_magia_player,self.info_dinero_player,self.info_timer]
+        self.widget_list = [self.info_salud_player,self.info_magia_player,self.info_dinero_player,self.info_timer]
 
         self.clock.tick(FPS)
          
@@ -363,7 +370,10 @@ class FormStartLevel(Form):
         self.enemies.update(self.player)
 
         if(self.level_timer >0):
-            self.level_timer -=2
+            current_timer = pygame.time.get_ticks()
+            if (current_timer - self.first_last_timer > 1000):
+                self.level_timer -=1
+                self.first_last_timer = current_timer
 
         
 
@@ -499,7 +509,7 @@ class FormEnterName(Form):
         self.button_confirm_name = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+100,text="CONFIRMAR NOMBRE",screen=master_surface
         ,on_click=self.click_confirm_name)
         
-        self.widget_list = [self.title,self.subtitle,self.subtitle_score,self.text_box,self.button_confirm_name]
+        self.widget_list = [self.title,self.subtitle,self.subtitle_score,self.button_confirm_name]
 
         
     
@@ -510,15 +520,17 @@ class FormEnterName(Form):
         super().draw()
         for widget in self.widget_list:    
             widget.draw()
+        self.text_box.draw()
         self.writing_text  = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-20,text="{0}".format(self.text_box._wrting.upper()),
         screen=self.master_surface,font_size=30)
         self.writing_text.draw()
 
-    def update(self):
+    def update(self,event_list):
         ##super().music_update()
         super().draw()
         #print(self.text_box._wrting)
         #print(type(self.name_player_writen))
+        self.text_box.update(event_list)
         for widget in self.widget_list:    
             widget.update()  
 

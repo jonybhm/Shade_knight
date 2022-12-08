@@ -80,7 +80,7 @@ class TextBox(Widget):
         self.click_option_sfx = pygame.mixer.Sound(PATH +r"\\sfx\\menu_select.wav")
         self.on_click = on_click
         self.on_click_param = on_click_param
-        self.write_on = False
+        self.write_on = True
         #self.state = M_STATE_NORMAL
         self._wrting = ""
         self.image_wrting = self.font.render(self._wrting,True,(255,255,255))
@@ -89,22 +89,18 @@ class TextBox(Widget):
         
         
         
-    def box_pressed(self):
+    def box_pressed(self,event_list):
         
-        #posicion del mouse
-        pos = pygame.mouse.get_pos()
-        event_list = pygame.event.get()
+        
+        #event_list = pygame.event.get()
         
         #colision mouse/boton
         for event in event_list:
-            if (event.type == pygame.MOUSEBUTTONDOWN):
-                self.click_option_sfx.set_volume(0.2)
-                self.click_option_sfx.play()
-                self.write_on = self.rect.collidepoint(pos)
+            
             if (event.type == pygame.KEYDOWN and self.write_on):
-                if event.key == pygame.K_RETURN:
-                    self.write_on = False
-                elif event.key == pygame.K_BACKSPACE:
+                '''if event.key == pygame.K_RETURN:
+                    self.write_on = False'''
+                if event.key == pygame.K_BACKSPACE:
                     self._wrting = self._wrting[:-1]
                 else:
                     self._wrting += event.unicode
@@ -114,9 +110,9 @@ class TextBox(Widget):
         self.image.blit(self.screen,(self.rect_wrting.x,self.rect_wrting.y))
         #mostrar wrtingo en pantalla       
         
-    def update(self):
+    def update(self,event_list):
         self.draw()
-        self.box_pressed()
+        self.box_pressed(event_list)
         #print(self._wrting)
         print(self.write_on)
 
