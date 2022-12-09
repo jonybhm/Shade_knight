@@ -52,16 +52,16 @@ class FormMainMenu(Form):
         self.menu_ppal_title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
         self.menu_ppal_subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="MENU PRINCIPAL",screen=master_surface,font_size=50)
 
-        self.button_start = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="COMENZAR",screen=master_surface
+        self.button_start = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-75,text="COMENZAR",screen=master_surface
         ,on_click=self.click_start)
         self.button_level_select = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2,text="SELECCIONAR NIVEL",screen=master_surface
         ,on_click=self.click_level_select,on_click_param="form_level_select")
-        self.button_options = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+100,text="OPCIONES",screen=master_surface
+        self.button_options = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+75,text="OPCIONES",screen=master_surface
         ,on_click=self.click_options,on_click_param="form_options")
-        self.button_exit = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+200,text="SALIR",screen=master_surface
-        ,on_click=self.click_exit)
-        self.button_rankings = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+300,text="RANKINGS",screen=master_surface
+        self.button_rankings = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+150,text="RANKINGS",screen=master_surface
         ,on_click=self.click_rankings,on_click_param="form_rankings")
+        self.button_exit = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+225,text="SALIR",screen=master_surface
+        ,on_click=self.click_exit)
         
         self.widget_list = [self.menu_ppal_subtitle,self.menu_ppal_title,self.button_start,
         self.button_level_select,self.button_options,self.button_exit,self.button_rankings]
@@ -549,14 +549,15 @@ class FormRanking(Form):
         self.ranking_list=ranking_list
         #BOTONES instancio y dibujo en pantalla que toma la imagen del menu
         self.title = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-300,text="SHADE KNIGHT",screen=master_surface,font_size=75)
-        self.subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="TOP RANKINGS",screen=master_surface,font_size=50)
-        self.button_return_menu = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-100,text="VOLVER AL MENU",screen=master_surface
+        self.subtitle = TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2-200,text="TOP 10 RANKINGS",screen=master_surface,font_size=50)
+        self.button_return_menu = Button(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+200,text="VOLVER AL MENU",screen=master_surface
         ,on_click=self.click_return_menu,on_click_param="form_main_menu")
                 
                
         for i in range(len(ranking_list)):
-            self.ranking_on_screen.append(TextTitle(x=SCREEN_WIDTH//2-100,y=SCREEN_HEIGHT//2+i*25,text="{0}".format(i+1),screen=master_surface,font_size=25))
-            self.ranking_on_screen.append(TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2+i*25,text="{0}".format(ranking_list[i][1:]),screen=master_surface,font_size=25))
+            self.ranking_on_screen.append(TextTitle(x=SCREEN_WIDTH//2-100,y=SCREEN_HEIGHT//2.5+i*25,text="{0}".format(i+1),screen=master_surface,font_size=25))
+            self.ranking_on_screen.append(TextTitle(x=SCREEN_WIDTH//2,y=SCREEN_HEIGHT//2.5+i*25,text="{0}".format(ranking_list[i][1]),screen=master_surface,font_size=25))
+            self.ranking_on_screen.append(TextTitle(x=SCREEN_WIDTH//2+100,y=SCREEN_HEIGHT//2.5+i*25,text="{0}".format(ranking_list[i][2]),screen=master_surface,font_size=25))
             
         
         

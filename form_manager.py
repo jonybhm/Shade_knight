@@ -7,6 +7,9 @@ from forms import *
 
 class FormManager:
     def __init__ (self,screen,ranking_info_db):
+        '''
+        A class used to manage forms
+        '''
         
         self.main_screen = screen
         self.global_score = 0
@@ -14,7 +17,6 @@ class FormManager:
         
         self.ranking_info_db = ranking_info_db
         
-        #FORMULARIOS!!
         self.form_main_menu = FormMainMenu(name="form_main_menu",master_surface=self.main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
         self.form_options = FormOptions(name="form_options",master_surface=self.main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
         self.form_level_select = FormLevelSelect(name="form_level_select",master_surface=self.main_screen,x=0,y=0,active=True,level_num=1,music_name="main_menu")
@@ -35,49 +37,48 @@ class FormManager:
     
     def forms_update(self,event_list):
 
-        #UPDATE Y DRAW DE FORMULARIOS
-        if(self.form_main_menu.active):#MENU PRINCIPAL
+        if(self.form_main_menu.active):
             self.form_main_menu.update()
             self.form_main_menu.draw()
-            if(self.form_main_menu.start_first_level == True): #COMENZAR DESDE EL PRIMER NIVEL
+            if(self.form_main_menu.start_first_level == True): 
                 self.current_level=0
                 self.form_main_menu.start_first_level = False
                 self.form_start_level = FormStartLevel(name="form_start_level",master_surface=self.main_screen,x=0,y=0,active=True,level_num=self.current_level,music_name="other_1")
                 self.form_start_level.set_active("form_start_level")
             
-        elif(self.form_options.active): #MENU OPCIONES
+        elif(self.form_options.active): 
             self.form_options.update()
             self.form_options.draw()
 
-        elif(self.form_level_select.active): #SELECCION DE NIVELES
+        elif(self.form_level_select.active): 
             self.form_level_select.update()
             self.form_level_select.draw()
-            if(self.form_level_select.is_selected == True): #SELECCION DE NIVELES
+            if(self.form_level_select.is_selected == True): 
                 self.current_level=self.form_level_select.level_selected
                 self.form_level_select.is_selected = False
                 self.form_start_level = FormStartLevel(name="form_start_level",master_surface=self.main_screen,x=0,y=0,active=True,level_num=self.current_level,music_name="other_1")
                 self.form_start_level.set_active("form_start_level")
 
-        elif(self.form_start_level.active): #INICIO DE NIVEL
+        elif(self.form_start_level.active): 
             self.form_start_level.update(event_list)
             self.form_start_level.draw()
             self.form_start_level.level_advance()
             print(self.global_score)
             
             
-            if (self.form_start_level.advance_level == True ): #AVANCE DE NIVELES
-                self.global_score += self.form_start_level.player.score #puntaje global que se actuliza mientras los niveles avanzan
+            if (self.form_start_level.advance_level == True ): 
+                self.global_score += self.form_start_level.player.score 
                 if(self.current_level < len(self.form_start_level.level_info)-1):
                     self.form_screen_transition_advance = FormScreenTransition(name="form_screen_transition_advance",master_surface=self.main_screen,x=0,y=0,active=True,speed=4,direction=1,level_num=self.current_level+1,music_name="main_menu")
                     self.form_screen_transition_advance.set_active("form_screen_transition_advance")
                     
 
-            if(self.form_start_level.game_ending == True): #INGRESAR NOMBRE PARA RANKINGS
+            if(self.form_start_level.game_ending == True): 
                 self.form_start_level.game_ending = False
                 self.form_enter_name = FormEnterName(name="form_enter_name",master_surface=self.main_screen,x=0,y=0,active=True,level_num=1,music_name="ending",score=self.global_score)
                 self.form_enter_name.set_active("form_enter_name")
             
-            if (self.form_pause.level_restart == True or self.form_start_level.player.is_alive == False): #REINICIO DE NIVELES
+            if (self.form_pause.level_restart == True or self.form_start_level.player.is_alive == False): 
                 self.form_screen_transition_reset = FormScreenTransition(name="form_screen_transition_reset",master_surface=self.main_screen,x=0,y=0,active=True,speed=4,direction=1,level_num=self.current_level,music_name="main_menu")
                 self.form_screen_transition_reset.set_active("form_screen_transition_reset")
 
@@ -89,10 +90,9 @@ class FormManager:
             self.form_enter_name.update(event_list)
             self.form_enter_name.draw()
             if(self.form_enter_name.confirm_name == True):            
-                #print(self.form_enter_name.text_box._wrting)
-                #print(type(self.form_enter_name.text_box._wrting))
+                
                 self.form_enter_name.confirm_name = False                    
-                add_rows_sqlite(self.form_enter_name.text_box._wrting,self.global_score) #agrega info a la base de datos
+                add_rows_sqlite(self.form_enter_name.text_box._wrting,self.global_score)
                 self.ranking_info_db = view_rows_sqlite()
                 print(self.ranking_info_db)          
                 self.form_rankings = FormRanking(name="form_rankings",master_surface=self.main_screen,x=0,y=0,active=True,level_num=1,music_name="ending",

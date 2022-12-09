@@ -6,9 +6,12 @@ from spell import *
 from character import *
 
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self,char_type,speed,health,img_scale):
+    '''
+    This class represent the enemies that appear and attack the player
+    '''
+    def __init__(self,char_type:str,speed:int,health:int,img_scale:float)->None:
         pygame.sprite.Sprite.__init__(self)
-        #propiedades de los enemigos
+      
         self.is_alive = True
                 
         self.health = health
@@ -18,21 +21,20 @@ class Enemy(pygame.sprite.Sprite):
         
         self.spell_cooldown = 0
 
-        self.char_type = char_type #tipo de personaje player/enemigo/mid
-        self.speed = speed #cantidad de pixeles que el personaje se va a mover
+        self.char_type = char_type 
+        self.speed = speed 
         
         self.animation_list = []
         self.frame_index = 0
         self.character_action_index = 0
         self.time_update = pygame.time.get_ticks()
 
-        
-        self.direction = 1 #"viendo" hacia arriba
-        self.enemy_move_limit = 0 #contador de cuanto se mueve hacia un lado
+        self.direction = 1
+        self.enemy_move_limit = 0 
         self.stop_move = False
-        self.stop_move_limit_timer = 0 #contador de cuanto se queda quieto
+        self.stop_move_limit_timer = 0 
         if(self.char_type=="enemy"):
-            #diccionario con nombre de carpeta y cantidad de frames segun accion
+           
             animation_folders_dic = {"idle":6,"death":6} 
             for type_folder in animation_folders_dic:
                 buffer_list = []     
@@ -44,7 +46,7 @@ class Enemy(pygame.sprite.Sprite):
                 self.animation_list.append(buffer_list)
 
         elif(self.char_type=="mid"):
-            #diccionario con nombre de carpeta y cantidad de frames segun accion
+            
             animation_folders_dic = {"mid":8,"death":6} 
             for type_folder in animation_folders_dic:
                 buffer_list = []     
@@ -56,7 +58,7 @@ class Enemy(pygame.sprite.Sprite):
                 self.animation_list.append(buffer_list)
         
         elif(self.char_type=="final"):
-            #diccionario con nombre de carpeta y cantidad de frames segun accion
+            
             animation_folders_dic = {"final":8,"death":6} 
             for type_folder in animation_folders_dic:
                 buffer_list = []     
@@ -83,13 +85,45 @@ class Enemy(pygame.sprite.Sprite):
         self.is_shoot_spell = False
         self.enemy_spell_sfx = pygame.mixer.Sound(PATH + r"\\sfx\\damage.wav")
 
+    def enemy_actions(self,player:object,spell_group:object)->None:
+        '''
+        Given a certain limit it changes the direction in which the enemies move in the y axis 
+        Arguments: Two groups of sprites (object) which contains spells and the player
+        Returns: None
+        '''
+        if (self.is_alive and player.is_alive):
+            if(random.randint(1,20) == 1): 
+                self.shooting_spell(spell_group)
+                      
+            if(self.direction==-1):
+                self.is_move_up = False
+                self.is_move_down = True
+            elif (self.direction==1):
+                self.is_move_down = False
+                self.is_move_up = True 
+                                
+            self.move_update()    
+            self.enemy_move_limit += 1 
 
-    def move_update (self):
-        #reiniciar variables de movimiento
+            if (self.enemy_move_limit > 20):
+                self.direction *= -1
+                self.enemy_move_limit *= -1
+
+        elif(self.is_alive == False and self.spell_cooldown == 0):
+            self.kill() 
+            player.kill_count += 1
+
+
+    def move_update (self)->None:
+        '''
+        Given some movement flags (bool) it adds speed to the enemies, in both x and y axis 
+        Arguments: None
+        Returns: None
+        '''
+       
         delta_x = 0
         delta_y = 0  
 
-        #variables de movimiento
         if (self.is_move_left):
             delta_x = -self.speed
             
@@ -102,15 +136,19 @@ class Enemy(pygame.sprite.Sprite):
         if (self.is_move_down):
             delta_y = self.speed
        
-        #actualizar posicion del rectangulo
         self.rect.x += delta_x
         self.rect.y += delta_y
 
     def shooting_spell(self,spell_group):
+        '''
+        Generates instances of the spells and adds them to sprite groups 
+        Arguments: None
+        Returns: None
+        '''
         if (self.spell_cooldown == 0 ):
             self.enemy_spell_sfx.set_volume(0.05)
             self.enemy_spell_sfx.play()
-            self.spell_cooldown = 100 #disparo una vez y hay que esperar hasta el siguiente  
+            self.spell_cooldown = 100 
             if(self.char_type == "enemy"):
                 spell = Spell(self.rect.centerx - (self.rect.size[0]),self.rect.centery,speed=-15,type_spell="small",spell_dmg=10)
                 spell_group.add(spell)
@@ -130,39 +168,24 @@ class Enemy(pygame.sprite.Sprite):
                 spell_group.add(spell_wave_2)
                 spell_group.add(spell_diag_1)
                 spell_group.add(spell_diag_2)
-            
-    
-    def enemy_actions(self,player,spell_group):
-        if (self.is_alive and player.is_alive):
-            if(random.randint(1,20) == 1): #probabilidad de 1/20
-                self.shooting_spell(spell_group)
-                      
-            if(self.direction==-1):
-                self.is_move_up = False
-                self.is_move_down = True
-            elif (self.direction==1):
-                self.is_move_down = False
-                self.is_move_up = True 
-                                
-            self.move_update()    
-            self.enemy_move_limit += 1 
+               
 
-            if (self.enemy_move_limit > 20):
-                self.direction *= -1
-                self.enemy_move_limit *= -1
-            
-                    
-           
 
-        elif(self.is_alive == False and self.spell_cooldown == 0):
-            self.kill() #quita al enemigo de la pantalla y del grupo de sprites
-            player.kill_count += 1
-
-    def cooldown_update(self):
+    def cooldown_update(self)->None:
+        '''
+        Counts down the cooldown timer
+        Arguments: None
+        Returns: None
+        '''
         if (self.spell_cooldown > 0):
             self.spell_cooldown -= 1
 
-    def verify_is_alive_update(self):
+    def verify_is_alive_update(self)->None:
+        '''
+        Verifys if the enemy is alive or dead 
+        Arguments: None
+        Returns: None
+        '''
         if (self.health <= 0):
             self.health = 0
             self.speed = 0
@@ -171,34 +194,55 @@ class Enemy(pygame.sprite.Sprite):
     
     
         
-    def animation_update(self):
-        #avanzar el frame en la animacion
+    def animation_update(self)->None:
+        '''
+        Runs down the frames in the animation and resets it when it reaches the end
+        Arguments: None
+        Returns: None
+        '''
+      
         self.image = self.animation_list[self.character_action_index][self.frame_index]
-        #verificar si el tiempo que paso desde la ultima update es maor a la cte ANIMATION_COOLDOWN
+        
         if (pygame.time.get_ticks() - self.time_update > ANIMATION_COOLDOWN):
             self.time_update =  pygame.time.get_ticks()
             self.frame_index += 1
-        #loopear la lista de frames
+       
         if (self.frame_index >= len(self.animation_list[self.character_action_index])):
-            if (self.character_action_index == 1): #en caso de morir
+            if (self.character_action_index == 1): 
                 self.frame_index = len (self.animation_list[self.character_action_index]) - 1
             else:    
                 self.frame_index = 0
         
-    def action_update(self,new_ation):
-        #verificar accion nueva es disntina a la anterior
+    def action_update(self,new_ation:int)->None:
+        '''
+        Updates the animation in the animation list
+        Arguments: new_action represented by an int value, representing different type of animation
+        Returns: None
+        '''
+       
         if (new_ation != self.character_action_index):
             self.character_action_index = new_ation
-            self.frame_index = 0 #iniciar nueva accion en el frame 0
+            self.frame_index = 0 
             self.time_update = pygame.time.get_ticks()
 
-    def update(self):
+    def draw (self,screen:object)->None:
+        '''
+        Merges the surface representing the platform with the one from the main screen
+        Arguments: The surface from the main screen (object) 
+        Returns: None
+        '''
+        if (DEBUG_MODE):
+            pygame.draw.rect(screen,RED,self.rect,1)
+        screen.blit(self.image,self.rect)
+    
+    def update(self)->None:
+        '''
+        Executes the methods that need update 
+        Arguments: None
+        Returns: None
+        '''
         self.animation_update()
         self.cooldown_update()
         self.move_update()
         self.verify_is_alive_update()
         
-    def draw (self,screen):
-        if (DEBUG_MODE):
-            pygame.draw.rect(screen,RED,self.rect,1)
-        screen.blit(self.image,self.rect)

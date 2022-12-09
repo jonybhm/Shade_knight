@@ -6,8 +6,11 @@ from auxiliar_2 import MetodoAuxiliar
 
 
 class Platform(pygame.sprite.Sprite):
+    '''
+    This class represent the platforms that appear in each level and its interactions
+    '''
     
-    def __init__(self,speed,w,h,type):
+    def __init__(self,speed:int,w:int,h:int,type:int)->None:
         pygame.sprite.Sprite.__init__(self)
         self.image = MetodoAuxiliar.getSurfaceFromSpriteSheet(PATH + r"\\platforms\\platforms.png",3,1)[type]
         self.image = pygame.transform.scale(self.image,(w,h))
@@ -22,12 +25,15 @@ class Platform(pygame.sprite.Sprite):
         self.platform_move_limit = 0
         self.is_move_left = True
         
-    def move_update (self):
-        #reiniciar variables de movimiento
+    def move_update (self)->None:
+        '''
+        Given some movement flags it adds speed to the platform, in both x and y axis
+        Arguments: None
+        Returns: None
+        '''
         delta_x = 0
         delta_y = 0  
 
-        #variables de movimiento
         if (self.is_move_left):
             delta_x = -self.speed*2
 
@@ -37,11 +43,15 @@ class Platform(pygame.sprite.Sprite):
         if (self.is_move_down):
             delta_y = self.speed
 
-        #actualizar posicion del rectangulo
         self.rect.x += delta_x
         self.rect.y += delta_y
 
-    def platform_wave(self):
+    def platform_wave(self)->None:
+        '''
+        Given a certain limit it changes the direction in which the platform moves in the y axis 
+        Arguments: None
+        Returns: None
+        '''
 
         if (self.direction==-1):
             self.is_move_up = False
@@ -59,8 +69,12 @@ class Platform(pygame.sprite.Sprite):
             
 
 
-    #colisiones con plataformas
-    def collide_update (self,spell_group_enemy,spell_group_player,platform_group):
+    def collide_update (self,spell_group_enemy:object,spell_group_player:object,platform_group:object)->None:
+        '''
+        Detects collisions between spells and platforms, and in case of collision, the spell is destroyed
+        Arguments: Three groups of sprites (object) which contains spells from players and enemies and platforms 
+        Returns: None
+        '''
         for spell in spell_group_enemy:
             if (pygame.sprite.spritecollide(spell,platform_group,False)):
                 spell.kill()   
@@ -70,13 +84,23 @@ class Platform(pygame.sprite.Sprite):
                 spell.kill() 
     
 
-    def draw(self,screen):
+    def draw(self,screen:object)->None:
+        '''
+        Merges the surface representing the platform with the one from the main screen
+        Arguments: The surface from the main screen (object) 
+        Returns: None
+        '''
         if(DEBUG_MODE):
             pygame.draw.rect(screen,RED,self.rect,1)
 
         screen.blit(self.image,self.rect)
 
-    def update(self,spell_group_enemy,spell_group_player,platform_group):
+    def update(self,spell_group_enemy:object,spell_group_player:object,platform_group:object)->None:
+        '''
+        Executes the methods that need update 
+        Arguments: Three groups of sprites (object) which contains spells from players and enemies and platforms 
+        Returns: None
+        '''
         self.platform_wave()
         self.collide_update(spell_group_enemy,spell_group_player,platform_group)
 
