@@ -8,7 +8,7 @@ from forms import *
 class FormManager:
     def __init__ (self,screen,ranking_info_db):
         '''
-        A class that represents the manager of the forms
+        This class represents the management of forms 
         '''
         
         self.main_screen = screen
