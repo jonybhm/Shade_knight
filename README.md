@@ -46,9 +46,8 @@
 ## Sobre/About
 
 > Este proyecto es un tributo a Hollow Knight, juego desarrollado por Team Cherry, y una primera incursión a 
-> la programación en Python y el uso de la biblioteca de Pygame. /
-> This project is a tribute to Hollow Knight, developed by Team Cherry, and a first incursion into python  
-> programming and the use of the Pygame library.
+> la programación en Python y el uso de la biblioteca de Pygame. / This project is a tribute to Hollow Knight, 
+> developed by Team Cherry, and a first incursion into python programming and the use of the Pygame library.
 
 <details>
 <summary>Screenshots</summary>
