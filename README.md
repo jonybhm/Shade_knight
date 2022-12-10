@@ -81,12 +81,26 @@
 ### Instalación / Installation
 
 
-> Puede instalar Python utilizando el siguiente enlace: https://www.python.org/ . Pygame se puede instalar desde la terminal mediante el comando
-> ``` pip install pygame```. El repositorio se puede descargar desde <>Code -> Download ZIP o simplemente forkearlo. 
+> Puede instalar Python utilizando el siguiente enlace: https://www.python.org/ . 
+> 
+> Pygame se puede instalar desde la terminal mediante el comando
+> 
+> ```sh
+> pip install pygame
+> ``` 
+> 
+> El repositorio se puede descargar desde <>Code -> Download ZIP o simplemente forkearlo. 
 
 > To install Python use the following 
-> link: https://www.python.org/ . Pygame can be installed from the terminal using the command ```pip install pygame```. The repository can be 
-> downloaded from <>Code -> Download ZIP or just fork it.
+> link: https://www.python.org/ . 
+> 
+> Pygame can be installed from the terminal using the command
+> 
+> ```sh
+> pip install pygame
+> ``` 
+> 
+> The repository can be downloaded from <>Code -> Download ZIP or just fork it.
 
 > <img src="docs/images/Screenshot_repositorio.png" title="Main Menu" width="100%"> 
 
