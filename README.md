@@ -56,9 +56,15 @@
 > **[?]**
 > Please provide your screenshots here.
 
-|                               Home Page                               |                               Login Page                               |
+|                        Menu Principal/Main Menu                       |                         Jugabilidad/Gameplay                           |
 | :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img src="docs/images/screenshot.png" title="Home Page" width="100%"> | <img src="docs/images/screenshot.png" title="Login Page" width="100%"> |
+| <img src="docs/images/screenshot.png" title="Main Menu" width="100%"> | <img src="docs/images/screenshot2.png" title="Gameplay" width="100%">  |
+|                           Puntajes/Rankings                           |                         Jugabilidad/Gameplay                           |
+| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+| <img src="docs/images/rankings.png" title="Main Menu" width="100%">| <img src="docs/images/screenshot3.png" title="Gameplay" width="100%">  |
+|                        Menu Principal/Main Menu                       |                         Jugabilidad/Gameplay                           |
+| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+| <img src="docs/images/screenshot1.png" title="Main Menu" width="100%">| <img src="docs/images/screenshot2.png" title="Gameplay" width="100%">  |
 
 </details>
 
