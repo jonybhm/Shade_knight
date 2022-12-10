@@ -22,7 +22,7 @@
 </div>
 
 <details open="open">
-<summary>Table of Contents</summary>
+<summary>Tabla de Contenidos/Table of Contents</summary>
 
 - [About](#about)
   - [Built With](#built-with)
@@ -46,11 +46,11 @@
 ## About
 
 > **[?]**
-> Provide general information about your project here.
-> What problem does it (intend to) solve?
-> What is the purpose of your project?
-> Why did you undertake it?
-> You don't have to answer all the questions -- just the ones relevant to your project.
+> Este proyecto es un tributo a Hollow Knight, juego desarrollado por Team Cherry, y una primera incursión a 
+> la programación en Python y el uso de la biblioteca de Pygame.
+<br>
+> This project is a tribute to Hollow Knight, developed by Team Cherry, and a first incursion into python  
+> programming and the use of the Pygame library 
 
 <details>
 <summary>Screenshots</summary>
