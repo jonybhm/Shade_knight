@@ -12,15 +12,8 @@ WHITE = (255,255,255)
 BLACK = (0,0,0)
 
 
-ANIMATION_COOLDOWN = 100 #tiempo hasta el siguiente frame
+ANIMATION_COOLDOWN = 100 
 
 TILE =10
 
 DEBUG_MODE = False
-
-
-
-
-
-
-
