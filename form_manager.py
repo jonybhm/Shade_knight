@@ -8,7 +8,7 @@ from forms import *
 class FormManager:
     def __init__ (self,screen,ranking_info_db):
         '''
-        A class used to manage forms
+        A class that represents the manager of the forms
         '''
         
         self.main_screen = screen
@@ -27,7 +27,12 @@ class FormManager:
         self.form_screen_transition_reset = FormScreenTransition(name="form_screen_transition_reset",master_surface=self.main_screen,x=0,y=0,active=True,speed=4,direction=1,level_num=self.current_level,music_name="main_menu")
         self.form_screen_transition_advance = FormScreenTransition(name="form_screen_transition_advance",master_surface=self.main_screen,x=0,y=0,active=True,speed=4,direction=1,level_num=self.current_level+1,music_name="main_menu")
 
-    def keys_update(self,event_list):
+    def keys_update(self,event_list:list)->None:
+        '''
+        Checks if ESC key is pressed to acces the Pause form
+        Arguments: event list (list)
+        Returns: None
+        '''
 
         for event in event_list:
         
@@ -35,7 +40,12 @@ class FormManager:
                 if (event.key == pygame.K_ESCAPE):
                     self.form_pause.set_active("form_pause")
     
-    def forms_update(self,event_list):
+    def forms_update(self,event_list:list)->None:
+        '''
+        Updates and draw the forms given the specific conditions
+        Arguments: event list (list)
+        Returns: None
+        '''
 
         if(self.form_main_menu.active):
             self.form_main_menu.update()
@@ -63,8 +73,7 @@ class FormManager:
             self.form_start_level.update(event_list)
             self.form_start_level.draw()
             self.form_start_level.level_advance()
-            print(self.global_score)
-            
+                        
             
             if (self.form_start_level.advance_level == True ): 
                 self.global_score += self.form_start_level.player.score 
@@ -94,7 +103,7 @@ class FormManager:
                 self.form_enter_name.confirm_name = False                    
                 add_rows_sqlite(self.form_enter_name.text_box._wrting,self.global_score)
                 self.ranking_info_db = view_rows_sqlite()
-                print(self.ranking_info_db)          
+                 
                 self.form_rankings = FormRanking(name="form_rankings",master_surface=self.main_screen,x=0,y=0,active=True,level_num=1,music_name="ending",
                 ranking_list=self.ranking_info_db)
                 self.form_rankings.set_active("form_rankings")
@@ -121,6 +130,11 @@ class FormManager:
                 self.form_start_level = FormStartLevel(name="form_start_level",master_surface=self.main_screen,x=0,y=0,active=True,level_num=self.current_level,music_name="other_1")
                 self.form_start_level.set_active("form_start_level")
 
-    def update(self,event_list):
+    def update(self,event_list:list)->None:
+        '''
+        Executes the methods that need update 
+        Arguments: event list (list)
+        Returns: None
+        '''
         self.keys_update(event_list)
         self.forms_update(event_list)

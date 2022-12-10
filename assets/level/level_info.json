@@ -9,10 +9,10 @@
 			"platform_width": 100,
 			"platform_height": 60,
 			"platform_type": 0,
-			"number_max_enemies": 1,
+			"number_max_enemies": 10,
 			"enemy_type": "enemy",
 			"enemy_scale": 0.50,
-			"enemy_health": 75,
+			"enemy_health": 100,
 			"enemy_timer": 200
 		},
 		{
@@ -24,7 +24,7 @@
 			"platform_width": 100,
 			"platform_height": 60,
 			"platform_type": 1,
-			"number_max_enemies": 1,
+			"number_max_enemies": 5,
 			"enemy_type": "mid",
 			"enemy_scale": 0.75,
 			"enemy_health": 300,
@@ -42,7 +42,7 @@
 			"number_max_enemies": 1,
 			"enemy_type": "final",
 			"enemy_scale": 0.75,
-			"enemy_health": 300,
+			"enemy_health": 2500,
 			"enemy_timer": 0
 		}
 	]

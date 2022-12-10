@@ -1,5 +1,4 @@
 import pygame
-import json
 from SQLITE import *
 from form_manager import *
 
@@ -22,7 +21,6 @@ while (run):
     event_list = pygame.event.get()
     
     for event in event_list:
-        #salir del juego
         if (event.type == pygame.QUIT):
             run = False
 
