@@ -1,7 +1,9 @@
 <h1 align="center">
   <a href="https://github.com/GITHUB_USERNAME/REPO_SLUG">
     <!-- Please provide path to your logo here -->
-    <img src="docs/images/logo.svg" alt="Logo" width="100" height="100">
+    <img src="docs/images/logo.png" alt="Logo" width="100" height="100">
+    <!-- Please provide path to your logo here -->
+    <img src="docs/images/logo.svg" alt="Text" width="100" height="100">
   </a>
 </h1>
 
@@ -44,9 +46,9 @@
 
 ## Sobre / About
 > **[?]**
-> Este proyecto es un tributo a Hollow Knight, juego desarrollado por Team Cherry, y una primera incursión a 
-> la programación en Python y el uso de la biblioteca de Pygame. / This project is a tribute to Hollow Knight, 
-> developed by Team Cherry, and a first incursion into python programming and the use of the Pygame library.
+> Este proyecto es un tributo a Hollow Knight, juego desarrollado por Team Cherry, y una primera incursión a la programación en Python y el uso de la biblioteca de Pygame. 
+
+> This project is a tribute to Hollow Knight, developed by Team Cherry, and a first incursion into python programming and the use of the Pygame library.
 
 ---
 ## Capturas de Pantalla / Screenshots
@@ -68,11 +70,13 @@
 ### Hecho con / Built With
 
 > **[?]**
-> Hecho en Python con la biblioteca de Pygame / Made in Python with Pygame library
+> Hecho en Python con la biblioteca de Pygame 
+
+> Made in Python with Pygame library
 
 ## Empezando / Getting Started
 
-### Prerequisitos / Prerequisites
+### Requisitos previos / Prerequisites
 
 > **[?]**
 > Es necesario tener instalado python y pygame para poder ejecutar el juego desde el main / 
@@ -83,47 +87,51 @@
 > **[?]**
 > Puede instalar Python utilizando el siguiente enlace: https://www.python.org/ . Pygame se puede instalar desde la terminal mediante el comando
 > ``` pip install pygame```. El repositorio se puede descargar desde <>Code -> Download ZIP o simplemente forkearlo. 
-> / To install Python use the following 
+
+> To install Python use the following 
 > link: https://www.python.org/ . Pygame can be installed from the terminal using the command ```pip install pygame```. The repository can be 
 > downloaded from <>Code -> Download ZIP or just fork it.
-> 
+
 > <img src="docs/images/Screenshot_repositorio.png" title="Main Menu" width="100%"> 
 
 ## Utilización / Usage
 
 > **[?]**
 > El código y juego se puede utilizar como gusten y de forma libre, ya sea como base o para aportar al mismo codigo (como contribuir más adelante)
+
 > The code and game can be used as you like and freely, either as a base or to contribute to the same code (how to contribute next)
 
 ## Contribuciones / Contributing
 
-En primer lugar, gracias por tomarse el tiempo para contribuir! Las contribuciones son lo que hace que la comunidad de código abierto sea un lugar increíble para aprender, inspirar y crear. Cualquier contribución que haga beneficiará a todos los demás y es **muy apreciada**./
-First off, thanks for taking the time to contribute! Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make will benefit everybody else and are **greatly appreciated**.
+Si desean contribuir por favor lea las [pautas de contribucion](docs/CONTRIBUTING.md).Desde ya su contribución es **muy apreciada**.
 
+If you would like to contribute please read the [contribution guidelines](docs/CONTRIBUTING.md). Your contribution is **greatly appreciated**.
 
-Please read [our contribution guidelines](docs/CONTRIBUTING.md), and thank you for being involved!
+## Autores y contribuyentes / Authors & contributors
 
-## Authors & contributors
+El setup original del repositorio fue hecho por [Jonathan De Castro](https://github.com/jonybhm). 
+[Contribuyentes](https://github.com/jonybhm/REPO_SLUG/contributors). 
 
-El setup original del repositorio fue hecho por [Jonathan De Castro](https://github.com/jonybhm).
 The original setup of this repository is by [Jonathan De Castro](https://github.com/jonybhm).
+[Contributors](https://github.com/jonybhm/REPO_SLUG/contributors).
 
-For a full list of all authors and contributors, see [the contributors page](https://github.com/jonybhm/REPO_SLUG/contributors).
+## Licencia / License
 
-## Security
+Este proyecto está autorizado bajo la **licencia MIT**.
 
-PROJECT_NAME follows good practices of security, but 100% security cannot be assured.
-PROJECT_NAME is provided **"as is"** without any **warranty**. Use at your own risk.
-
-_For more information and to report security issues, please refer to our [security documentation](docs/SECURITY.md)._
-
-## License
+Consulte [LICENCIA](LICENSE) para obtener más información.
 
 This project is licensed under the **MIT license**.
 
 See [LICENSE](LICENSE) for more information.
 
-## Reconocimientos
+## Reconocimientos / Acknowledgments
 
 > **[?]**
-> Este mini juego esta inspirado por "Hollow Knight" creado por "Team Cherry" y es un tributo al mismo. 
+> Este mini juego esta inspirado por [Hollow Knight](https://www.hollowknight.com/) creado por [Team Cherry](https://www.teamcherry.com.au/) y es un tributo al mismo.
+
+> La música utilizada es un arreglo hecho por [MakiOST](https://www.youtube.com/@MakiOST) en [HollowBit Project](https://youtube.com/playlist?list=PLyd73Ll0_1o-qragyllGsnO4qMhcWhau-) /
+
+> This mini game is inspired by [Hollow Knight](https://www.hollowknight.com/) created by [Team Cherry](https://www.teamcherry.com.au/) and is a tribute to it.
+
+> The music used is an arrangement made by [MakiOST](https://www.youtube.com/@MakiOST) in [HollowBit Project](https://youtube.com/playlist?list=PLyd73Ll0_1o-qragyllGsnO4qMhcWhau-)
