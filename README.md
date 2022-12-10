@@ -8,9 +8,7 @@
 <div align="center">
   SHADE KNIGHT
   <br />
-  <a href="#about"><strong>Explore las capturas de pantalla »</strong></a>
-  <br />
-  <a href="#about"><strong>Explore the screenshots »</strong></a>
+ 
   <br />
   
 </div>
@@ -24,8 +22,9 @@
 <details open="open">
 <summary>Tabla de Contenidos/Table of Contents</summary>
 
-- [About](#about)
-  - [Built With](#built-with)
+- [Sobre/About](#sobreabout)
+  - [Capturas de Pantalla/Screenshots](#capturas-de-pantallascreenshots)
+  - [Hecho con/Built With](#hecho-conbuilt-with)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -43,84 +42,62 @@
 
 ---
 
-## Sobre/About
-
+## Sobre / About
+> **[?]**
 > Este proyecto es un tributo a Hollow Knight, juego desarrollado por Team Cherry, y una primera incursión a 
 > la programación en Python y el uso de la biblioteca de Pygame. / This project is a tribute to Hollow Knight, 
 > developed by Team Cherry, and a first incursion into python programming and the use of the Pygame library.
 
-<details>
-<summary>Screenshots</summary>
+---
+## Capturas de Pantalla / Screenshots
 <br>
 
-> **[?]**
-> Please provide your screenshots here.
 
 |                        Menu Principal/Main Menu                       |                         Jugabilidad/Gameplay                           |
 | :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img src="docs/images/screenshot.png" title="Main Menu" width="100%"> | <img src="docs/images/screenshot2.png" title="Gameplay" width="100%">  |
+| <img src="docs/images/main_menu.png" title="Main Menu" width="100%">  | <img src="docs/images/screenshot3.png" title="Gameplay" width="100%">  |
 |                           Puntajes/Rankings                           |                         Jugabilidad/Gameplay                           |
-| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img src="docs/images/rankings.png" title="Main Menu" width="100%">| <img src="docs/images/screenshot3.png" title="Gameplay" width="100%">  |
-|                        Menu Principal/Main Menu                       |                         Jugabilidad/Gameplay                           |
-| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img src="docs/images/screenshot1.png" title="Main Menu" width="100%">| <img src="docs/images/screenshot2.png" title="Gameplay" width="100%">  |
+|  |  |
+| <img src="docs/images/rankings.png" title="Rankings" width="100%">    | <img src="docs/images/screenshot2.png" title="Gameplay" width="100%">  |
+|                        Menu Pausa/Pause Menu                          |                         Jugabilidad/Gameplay                           |
+| | |
+| <img src="docs/images/pause.png" title="Main Menu" width="100%">| <img src="docs/images/screenshot1.png" title="Gameplay" width="100%">  |
 
 </details>
 
-### Built With
+### Hecho con / Built With
 
 > **[?]**
-> Please provide the technologies that are used in the project.
+> Hecho en Python con la biblioteca de Pygame / Made in Python with Pygame library
 
-## Getting Started
+## Empezando / Getting Started
 
-### Prerequisites
-
-> **[?]**
-> What are the project requirements/dependencies?
-
-### Installation
+### Prerequisitos / Prerequisites
 
 > **[?]**
-> Describe how to install and get started with the project.
+> Es necesario tener instalado python y pygame para poder ejecutar el juego desde el main / 
+> It is necessary to have python and pygame installed to be able to run the game from main
 
-## Usage
-
-> **[?]**
-> How does one go about using it?
-> Provide various use cases and code examples here.
-
-## Roadmap
-
-See the [open issues](https://github.com/GITHUB_USERNAME/REPO_SLUG/issues) for a list of proposed features (and known issues).
-
-- [Top Feature Requests](https://github.com/GITHUB_USERNAME/REPO_SLUG/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
-- [Top Bugs](https://github.com/GITHUB_USERNAME/REPO_SLUG/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
-- [Newest Bugs](https://github.com/GITHUB_USERNAME/REPO_SLUG/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
-
-## Support
+### Instalación / Installation
 
 > **[?]**
-> Provide additional ways to contact the project maintainer/maintainers.
+> Puede instalar Python utilizando el siguiente enlace: https://www.python.org/ . Pygame se puede instalar desde la terminal mediante el comando
+> ``` pip install pygame```. El repositorio se puede descargar desde <>Code -> Download ZIP o simplemente forkearlo. 
+> / To install Python use the following 
+> link: https://www.python.org/ . Pygame can be installed from the terminal using the command ```pip install pygame```. The repository can be 
+> downloaded from <>Code -> Download ZIP or just fork it.
+> 
+> <img src="docs/images/Screenshot_repositorio.png" title="Main Menu" width="100%"> 
 
-Reach out to the maintainer at one of the following places:
+## Utilización / Usage
 
-- [GitHub issues](https://github.com/GITHUB_USERNAME/REPO_SLUG/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+)
-- Contact options listed on [this GitHub profile](https://github.com/GITHUB_USERNAME)
+> **[?]**
+> El código y juego se puede utilizar como gusten y de forma libre, ya sea como base o para aportar al mismo codigo (como contribuir más adelante)
+> The code and game can be used as you like and freely, either as a base or to contribute to the same code (how to contribute next)
 
-## Project assistance
+## Contribuciones / Contributing
 
-If you want to say **thank you** or/and support active development of PROJECT_NAME:
-
-- Add a [GitHub Star](https://github.com/GITHUB_USERNAME/REPO_SLUG) to the project.
-- Tweet about the PROJECT_NAME.
-- Write interesting articles about the project on [Dev.to](https://dev.to/), [Medium](https://medium.com/) or your personal blog.
-
-Together, we can make PROJECT_NAME **better**!
-
-## Contributing
-
+En primer lugar, gracias por tomarse el tiempo para contribuir! Las contribuciones son lo que hace que la comunidad de código abierto sea un lugar increíble para aprender, inspirar y crear. Cualquier contribución que haga beneficiará a todos los demás y es **muy apreciada**./
 First off, thanks for taking the time to contribute! Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make will benefit everybody else and are **greatly appreciated**.
 
 
@@ -128,9 +105,10 @@ Please read [our contribution guidelines](docs/CONTRIBUTING.md), and thank you f
 
 ## Authors & contributors
 
-The original setup of this repository is by [FULL_NAME](https://github.com/GITHUB_USERNAME).
+El setup original del repositorio fue hecho por [Jonathan De Castro](https://github.com/jonybhm).
+The original setup of this repository is by [Jonathan De Castro](https://github.com/jonybhm).
 
-For a full list of all authors and contributors, see [the contributors page](https://github.com/GITHUB_USERNAME/REPO_SLUG/contributors).
+For a full list of all authors and contributors, see [the contributors page](https://github.com/jonybhm/REPO_SLUG/contributors).
 
 ## Security
 
