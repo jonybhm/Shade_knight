@@ -8,8 +8,9 @@
 <div align="center">
   SHADE KNIGHT
   <br />
-  <a href="#about"><strong>Explore the screenshots »</strong></a>
+  <a href="#about"><strong>Explore las capturas de pantalla »</strong></a>
   <br />
+  <a href="#about"><strong>Explore the screenshots »</strong></a>
   <br />
   
 </div>
