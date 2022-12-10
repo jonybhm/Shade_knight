@@ -6,30 +6,23 @@
 </h1>
 
 <div align="center">
-  PROJECT_NAME
+  SHADE KNIGHT
+  <br />
+  <a href="#about"><strong>Explore las capturas de pantalla »</strong></a>
   <br />
   <a href="#about"><strong>Explore the screenshots »</strong></a>
   <br />
-  <br />
-  <a href="https://github.com/GITHUB_USERNAME/REPO_SLUG/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
-  ·
-  <a href="https://github.com/GITHUB_USERNAME/REPO_SLUG/issues/new?assignees=&labels=enhancement&template=02_FEATURE_REQUEST.md&title=feat%3A+">Request a Feature</a>
-  .
-  <a href="https://github.com/GITHUB_USERNAME/REPO_SLUG/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+">Ask a Question</a>
+  
 </div>
 
 <div align="center">
 <br />
 
-[![Project license](https://img.shields.io/github/license/GITHUB_USERNAME/REPO_SLUG.svg?style=flat-square)](LICENSE)
-
-[![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/GITHUB_USERNAME/REPO_SLUG/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-[![code with love by GITHUB_USERNAME](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-GITHUB_USERNAME-ff1414.svg?style=flat-square)](https://github.com/GITHUB_USERNAME)
 
 </div>
 
 <details open="open">
-<summary>Table of Contents</summary>
+<summary>Tabla de Contenidos/Table of Contents</summary>
 
 - [About](#about)
   - [Built With](#built-with)
@@ -50,14 +43,11 @@
 
 ---
 
-## About
+## Sobre/About
 
-> **[?]**
-> Provide general information about your project here.
-> What problem does it (intend to) solve?
-> What is the purpose of your project?
-> Why did you undertake it?
-> You don't have to answer all the questions -- just the ones relevant to your project.
+> Este proyecto es un tributo a Hollow Knight, juego desarrollado por Team Cherry, y una primera incursión a 
+> la programación en Python y el uso de la biblioteca de Pygame. / This project is a tribute to Hollow Knight, 
+> developed by Team Cherry, and a first incursion into python programming and the use of the Pygame library.
 
 <details>
 <summary>Screenshots</summary>
@@ -66,9 +56,15 @@
 > **[?]**
 > Please provide your screenshots here.
 
-|                               Home Page                               |                               Login Page                               |
+|                        Menu Principal/Main Menu                       |                         Jugabilidad/Gameplay                           |
 | :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img src="docs/images/screenshot.png" title="Home Page" width="100%"> | <img src="docs/images/screenshot.png" title="Login Page" width="100%"> |
+| <img src="docs/images/screenshot.png" title="Main Menu" width="100%"> | <img src="docs/images/screenshot2.png" title="Gameplay" width="100%">  |
+|                           Puntajes/Rankings                           |                         Jugabilidad/Gameplay                           |
+| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+| <img src="docs/images/rankings.png" title="Main Menu" width="100%">| <img src="docs/images/screenshot3.png" title="Gameplay" width="100%">  |
+|                        Menu Principal/Main Menu                       |                         Jugabilidad/Gameplay                           |
+| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+| <img src="docs/images/screenshot1.png" title="Main Menu" width="100%">| <img src="docs/images/screenshot2.png" title="Gameplay" width="100%">  |
 
 </details>
 
@@ -149,8 +145,7 @@ This project is licensed under the **MIT license**.
 
 See [LICENSE](LICENSE) for more information.
 
-## Acknowledgements
+## Reconocimientos
 
 > **[?]**
-> If your work was funded by any organization or institution, acknowledge their support here.
-> In addition, if your work relies on other software libraries, or was inspired by looking at other work, it is appropriate to acknowledge this intellectual debt too.
+> Este mini juego esta inspirado por "Hollow Knight" creado por "Team Cherry" y es un tributo al mismo. 
