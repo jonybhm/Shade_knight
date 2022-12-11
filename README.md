@@ -143,7 +143,7 @@ See [LICENSE](LICENSE) for more information.
 
 > Este mini juego esta inspirado por [Hollow Knight](https://www.hollowknight.com/) creado por [Team Cherry](https://www.teamcherry.com.au/) y es un tributo al mismo. Copyright © 2021 Team Cherry
 
-> La música utilizada es un arreglo hecho por [MakiOST](https://www.youtube.com/@MakiOST) en [HollowBit Project](https://youtube.com/playlist?list=PLyd73Ll0_1o-qragyllGsnO4qMhcWhau-) /
+> La música utilizada es un arreglo hecho por [MakiOST](https://www.youtube.com/@MakiOST) en [HollowBit Project](https://youtube.com/playlist?list=PLyd73Ll0_1o-qragyllGsnO4qMhcWhau-) 
 
 > This mini game is inspired by [Hollow Knight](https://www.hollowknight.com/) created by [Team Cherry](https://www.teamcherry.com.au/) and is a tribute to it. Copyright © 2021 Team Cherry
 
