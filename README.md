@@ -75,7 +75,8 @@
 ### Requisitos previos / Prerequisites
 
 
-> Es necesario tener instalado python y pygame para poder ejecutar el juego desde el main / 
+> Es necesario tener instalado python y pygame para poder ejecutar el juego desde el main 
+
 > It is necessary to have python and pygame installed to be able to run the game from main
 
 ### Instalación / Installation
