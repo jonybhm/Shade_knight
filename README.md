@@ -25,6 +25,7 @@
 <summary>Tabla de Contenidos/Table of Contents</summary>
 
 - [Sobre/About](#sobre--about)
+  - [Trailer](#trailer)
   - [Capturas de Pantalla/Screenshots](#capturas-de-pantalla--screenshots)
   - [Hecho con/Built With](#hecho-con--built-with)
 - [Empezando/Getting Started](#empezando--getting-started)
@@ -45,6 +46,14 @@
 > Este proyecto es un tributo a Hollow Knight, juego desarrollado por Team Cherry, y una primera incursión a la programación en Python y el uso de la biblioteca de Pygame. 
 
 > This project is a tribute to Hollow Knight, developed by Team Cherry, and a first incursion into python programming and the use of the Pygame library.
+
+---
+## Trailer
+<br>
+
+[![Watch the video](https://img.youtube.com/vi/tKbgiL7NpO4/maxresdefault.jpg)](https://youtu.be/tKbgiL7NpO4)
+
+
 
 ---
 ## Capturas de Pantalla / Screenshots
