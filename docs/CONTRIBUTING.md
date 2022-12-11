@@ -64,6 +64,7 @@ Please try to create bug reports that are:
 5. Push a la branch (`git push origin feat/amazing_feature`)
 6. [Abrir un Pull Request](https://github.com/jonybhm/Shade_knight/compare?expand=1)
 
+---
 
 1. Search our repository for open or closed
    [Pull Requests](https://github.com/jonybhm/Shade_knight/pulls)
