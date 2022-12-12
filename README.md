@@ -70,6 +70,7 @@
 | | |
 | <img src="docs/images/pause.png" title="Main Menu" width="100%">| <img src="docs/images/screenshot1.png" title="Gameplay" width="100%">  |
 
+
 </details>
 
 ### Hecho con / Built With
@@ -112,12 +113,17 @@
 > 
 > The repository can be downloaded from <>Code -> Download ZIP.
 
+
 |                        Descarga/Download                       |                        Descarga/Download                                |
 | :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img src="docs/images/python_install_1.png" title="Main Menu" width="100%">|<img src="docs/images/python_install_2.png" title="Gameplay" width="100%">  |
-|                           Instalacion Pygame/Pygame Install       |                         Repositorio/Repository                           |
+| <img src="docs/images/python_install_1.png" title="Main Menu" width="100%">  | <img src="docs/images/python_install_2.png" title="Gameplay" width="100%">  |
+|                           Instalacion Python/Python Install       |                         Instalacion Pygame/Pygame Install                           |
 |  |  |
-| <img src="docs/images/pygame_install.png" title="Rankings" width="100%">|<img src="docs/images/Screenshot_repositorio.png" title="Gameplay" width="100%">  |
+| <img src="docs/images/python_install_3.png" title="Rankings" width="100%">    | <img src="docs/images/pygame_install.png" title="Gameplay" width="100%">  |
+|                              Repositorio/Repository           |                 Carpetas/Folders                            |
+| | |
+| <img src="docs/images/Screenshot_repositorio.png" title="Main Menu" width="100%">| <img src="docs/images/folders.png" title="Gameplay" width="100%">  |
+
 ## Utilización / Usage
 
 
