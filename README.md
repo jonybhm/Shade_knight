@@ -112,8 +112,12 @@
 > 
 > The repository can be downloaded from <>Code -> Download ZIP.
 
-> <img src="docs/images/Screenshot_repositorio.png" title="Main Menu" width="100%"> 
-
+|                        Descarga/Download                       |                        Descarga/Download                                |
+| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+| <img src="docs/images/python_install_1.png" title="Main Menu" width="100%">|<img src="docs/images/python_install_2.png" title="Gameplay" width="100%">  |
+|                           Instalacion Pygame/Pygame Install       |                         Repositorio/Repository                           |
+|  |  |
+| <img src="docs/images/pygame_install.png" title="Rankings" width="100%">|<img src="docs/images/Screenshot_repositorio.png" title="Gameplay" width="100%">  |
 ## Utilización / Usage
 
 
