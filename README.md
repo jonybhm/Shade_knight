@@ -25,6 +25,7 @@
 <summary>Tabla de Contenidos/Table of Contents</summary>
 
 - [Sobre/About](#sobre--about)
+  - [Trailer](#trailer)
   - [Capturas de Pantalla/Screenshots](#capturas-de-pantalla--screenshots)
   - [Hecho con/Built With](#hecho-con--built-with)
 - [Empezando/Getting Started](#empezando--getting-started)
@@ -47,6 +48,14 @@
 > This project is a tribute to Hollow Knight, developed by Team Cherry, and a first incursion into python programming and the use of the Pygame library.
 
 ---
+## Trailer
+<br>
+
+[![Watch the video](https://img.youtube.com/vi/tKbgiL7NpO4/maxresdefault.jpg)](https://youtu.be/tKbgiL7NpO4)
+
+
+
+---
 ## Capturas de Pantalla / Screenshots
 <br>
 
@@ -61,22 +70,24 @@
 | | |
 | <img src="docs/images/pause.png" title="Main Menu" width="100%">| <img src="docs/images/screenshot1.png" title="Gameplay" width="100%">  |
 
+
 </details>
 
 ### Hecho con / Built With
 
 
-> Hecho en Python con la biblioteca de Pygame 
+> Hecho en Python con la biblioteca de Pygame. 
 
-> Made in Python with Pygame library
+> Made in Python with Pygame library.
 
 ## Empezando / Getting Started
 
 ### Requisitos previos / Prerequisites
 
 
-> Es necesario tener instalado python y pygame para poder ejecutar el juego desde el main / 
-> It is necessary to have python and pygame installed to be able to run the game from main
+> Es necesario tener instalado python y pygame para poder ejecutar el juego desde el main. 
+
+> It is necessary to have python and pygame installed to be able to run the game from main.
 
 ### Instalación / Installation
 
@@ -89,7 +100,7 @@
 > pip install pygame
 > ``` 
 > 
-> El repositorio se puede descargar desde <>Code -> Download ZIP o simplemente forkearlo. 
+> El repositorio se puede descargar desde <>Code -> Download ZIP. 
 
 > To install Python use the following 
 > link: https://www.python.org/ . 
@@ -100,32 +111,41 @@
 > pip install pygame
 > ``` 
 > 
-> The repository can be downloaded from <>Code -> Download ZIP or just fork it.
+> The repository can be downloaded from <>Code -> Download ZIP.
 
-> <img src="docs/images/Screenshot_repositorio.png" title="Main Menu" width="100%"> 
+
+|                        Descarga/Download                       |                        Descarga/Download                                |
+| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+| <img src="docs/images/python_install_1.png" title="Main Menu" width="100%">  | <img src="docs/images/python_install_2.png" title="Gameplay" width="100%">  |
+|                           Instalacion Python/Python Install       |                         Instalacion Pygame/Pygame Install                           |
+|  |  |
+| <img src="docs/images/python_install_3.png" title="Rankings" width="100%">    | <img src="docs/images/pygame_install.png" title="Gameplay" width="100%">  |
+|                              Repositorio/Repository           |                 Carpetas/Folders                            |
+| | |
+| <img src="docs/images/Screenshot_repositorio.png" title="Main Menu" width="100%">| <img src="docs/images/folders.png" title="Gameplay" width="100%">  |
 
 ## Utilización / Usage
 
 
-> El código y juego se puede utilizar como gusten y de forma libre, ya sea como base o para aportar al mismo codigo (como contribuir más adelante)
+> El código y juego se puede utilizar como gusten y de forma libre, ya sea como base para otro código o con el fin de aportar a este mismo (como contribuir se explica más adelante).
 
-> The code and game can be used as you like and freely, either as a base or to contribute to the same code (how to contribute next)
+> The code and game can be used as you like, freely, either as a base for another code or to contribute to this one (how to contribute next).
 
 ## Contribuciones / Contributing
 
-Si desean contribuir por favor lea las [pautas de contribucion](docs/CONTRIBUTING.md).Desde ya su contribución es **muy apreciada**.
+Si desean contribuir por favor lea las [pautas de contribución](docs/CONTRIBUTING.md).Desde ya cualquier tipo de contribución es **muy apreciada**.
 
-If you would like to contribute please read the [contribution guidelines](docs/CONTRIBUTING.md). Your contribution is **greatly appreciated**.
+If you would like to contribute please read the [contribution guidelines](docs/CONTRIBUTING.md). Any tyoe of contribution is **greatly appreciated**.
 
 ## Autores y contribuyentes / Authors & contributors
 
 El setup original del repositorio fue hecho por [Jonathan De Castro](https://github.com/jonybhm). 
 
-Lista de [Contribuyentes](https://github.com/jonybhm/REPO_SLUG/contributors). 
+Lista de [Contribuyentes](https://github.com/jonybhm/Shade_knight/contributors). 
 
 The original setup of this repository is by [Jonathan De Castro](https://github.com/jonybhm).
 
-List of [Contributors](https://github.com/jonybhm/REPO_SLUG/contributors).
+List of [Contributors](https://github.com/jonybhm/Shade_knight/contributors).
 
 ## Licencia / License
 
@@ -140,10 +160,10 @@ See [LICENSE](LICENSE) for more information.
 ## Reconocimientos / Acknowledgments
 
 
-> Este mini juego esta inspirado por [Hollow Knight](https://www.hollowknight.com/) creado por [Team Cherry](https://www.teamcherry.com.au/) y es un tributo al mismo.
+> Este mini juego esta inspirado por [Hollow Knight](https://www.hollowknight.com/) creado por [Team Cherry](https://www.teamcherry.com.au/) y es un tributo al mismo. Copyright © 2021 Team Cherry
 
-> La música utilizada es un arreglo hecho por [MakiOST](https://www.youtube.com/@MakiOST) en [HollowBit Project](https://youtube.com/playlist?list=PLyd73Ll0_1o-qragyllGsnO4qMhcWhau-) /
+> La música utilizada es un arreglo hecho por [MakiOST](https://www.youtube.com/@MakiOST) en [HollowBit Project](https://youtube.com/playlist?list=PLyd73Ll0_1o-qragyllGsnO4qMhcWhau-) 
 
-> This mini game is inspired by [Hollow Knight](https://www.hollowknight.com/) created by [Team Cherry](https://www.teamcherry.com.au/) and is a tribute to it.
+> This mini game is inspired by [Hollow Knight](https://www.hollowknight.com/) created by [Team Cherry](https://www.teamcherry.com.au/) and is a tribute to it. Copyright © 2021 Team Cherry
 
 > The music used is an arrangement made by [MakiOST](https://www.youtube.com/@MakiOST) in [HollowBit Project](https://youtube.com/playlist?list=PLyd73Ll0_1o-qragyllGsnO4qMhcWhau-)
