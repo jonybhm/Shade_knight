@@ -149,11 +149,11 @@ List of [Contributors](https://github.com/jonybhm/Shade_knight/contributors).
 
 ## Licencia / License
 
-Este proyecto está autorizado bajo la **licencia MIT**.
+Este proyecto está autorizado bajo la **Licencia Pública General de GNU V3.0**.
 
 Consulte [LICENCIA](LICENSE) para obtener más información.
 
-This project is licensed under the **MIT license**.
+This project is licensed under the **GNU General Public License V3.0**.
 
 See [LICENSE](LICENSE) for more information.
 
