@@ -4,6 +4,14 @@ from constantes import *
 from auxiliar import *
 from SQLITE import *
 from forms import *
+from form_enter_name import *
+from form_level_select import *
+from form_main_menu import *
+from form_options import *
+from form_pause import *
+from form_rankings import *
+from form_screen_transition import *
+from form_start_level import *
 
 class FormManager:
     def __init__ (self,screen,ranking_info_db):
